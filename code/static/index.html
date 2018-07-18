@@ -1,0 +1,406 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <meta charset="UTF-8"> 
+  <title>Actos</title> 
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css" /> 
+  <link rel="stylesheet" href="css/style.css" /> 
+  <script src="js/externo/jquery-1.11.1.min.js"></script> 
+  <script src="js/externo/jquery.mobile-1.4.5.js"></script> 
+  <script src="js/externo/underscore.js"></script> 
+  <script src="js/externo/backbone.js"></script> 
+  <script src="js/modelos/ActosEntity.js"></script> 
+  <script src="js/modelos/ActosList.js"></script> 
+  <script src="js/modelos/DatosEmEntity.js"></script> 
+  <script src="js/modelos/DatosEmList.js"></script>
+  <script src="js/modelos/PersonasEntity.js"></script> 
+  <script src="js/modelos/PersonasList.js"></script>
+  <script src="js/modelos/SalasEntity.js"></script> 
+  <script src="js/modelos/SalasList.js"></script>
+  <script src="js/vistas/ActosNewView.js"></script> 
+  <script src="js/vistas/ActosEditView.js"></script> 
+  <script src="js/vistas/ActosListView.js"></script> 
+  <script src="js/ActosApp.js"></script> 
+</head> 
+<body> 
+  <div id="pgHome" data-role="page"> 
+    <div data-role="header"> 
+       
+       <img class="mainHeaderLogo" src="./img/logoEm2017.png" /> 
+      
+     </div> 
+    <div data-role="content"> 
+        <div class="ui-field-contain">
+            <label id="lblEm" for="#seleccionaPopup" >EM: no seleccionado</label>
+          <button id="seleccionaPopup">Seleccionar EM</button>
+          
+          <div data-role="popup" id="popUpEmList" data-position-to="window" data-transition="turn">
+              <ul id="lvEm" data-role="listview" data-filter="true" data-inset="true"></ul> 
+          </div>
+          
+          <ul id="lvActos" data-role="listview" data-filter="true" data-inset="true"></ul> 
+        </div>
+    </div> 
+    <div data-role="footer" data-position="fixed"> 
+      <div data-role="navbar"> 
+        <ul> 
+          <li><a href="http://localhost:8080/index.html#pgHome" class="ui-btn-active ui-state-persist" data-icon="bullets">Actos</a></li> 
+          <li><a href="http://localhost:8080/index.html#pgNew" data-icon="plus">Nuevo</a></li> 
+          <li><a href="http://localhost:8080/index.html#pgTables" data-icon="gear">Tablas</a></li> 
+        </ul> 
+      </div> 
+    </div> 
+  </div> 
+  <div id="pgEdit" data-role="page"> 
+    <div data-role="header" data-add-back-btn="true" data-back-btn-text="Atr&aacute;s" > 
+       <H1>Editar acto</H1> 
+      <img class="ui-btn-right headerLogo" src="./img/logoEm2017.png" /> 
+     </div> 
+    <div class="ui-content"> 
+       <!--input id="txtEditarTitulo" type="text"> 
+       <input id="txtEditarFecha" type="text" disabled> 
+       <input id="txtEditarColor" type="color"> 
+       <label for="txtEditarVisualizar">Visualizar:</label> 
+       <select id="txtEditarVisualizar" data-role="flipswitch"> 
+         <option value="off">Off</option> 
+         <option value="on">On</option> 
+       </select> 
+       --> 
+       <div data-role="popup" id="editpopUpPersonasList" data-position-to="window" data-transition="turn">
+          <ul id="editlvPersonas" data-role="listview" data-filter="true" data-inset="true"></ul> 
+      </div>
+      <div data-role="popup" id="editpopUpSalasList" data-position-to="window" data-transition="turn">
+          <ul id="editlvSalas" data-role="listview" data-filter="true" data-inset="true"></ul> 
+      </div>
+       <label for="editinputidEm">Id EM:</label> <input id="editinputidEm" class="ui-state-disabled" type="text" > 
+       <label for="editinputdescripcion">Descripcion:</label> <input id="editinputdescripcion" type="text" > 
+       <label for="editinputdia">Dia:</label> <input id="editinputdia" type="date" > 
+       <label for="editinputinicio">Inicio:</label> <input id="editinputinicio" type="time" > 
+       <label for="editinputfin">Fin:</label> <input id="editinputfin" type="time" > 
+       <label for="editinputasistencia">Asistencia:</label> <input id="editinputasistencia" type="text" > 
+       <label for="editinputavisos">Avisos:</label> <input id="editinputavisos" type="text" > 
+       <label for="editinputturnoPreg">Turno preguntas:</label> 
+       <select id="editinputturnoPreg" data-role="flipswitch"> 
+         <option value="0">No</option> 
+         <option value="1">Si</option> 
+       </select> 
+  
+       <label for="editinputturnoPregModo">Modo turno preguntas:</label> <input id="editinputturnoPregModo" type="text" > 
+       <label for="editinputmicroMesa">Micro mesa:</label> <input id="editinputmicroMesa" type="text" > 
+       <label for="editinputmicroPie">Micro pie:</label> <input id="editinputmicroPie" type="text" > 
+       <label for="editinputmicroInalambrico">Micro inalambrico:</label> <input id="editinputmicroInalambrico" type="text" > 
+       <label for="editinputmatProyectar">Material a proyectar:</label> 
+       <select id="editinputmatProyectar" data-role="flipswitch"> 
+         <option value="0">No</option> 
+         <option value="1">Si</option> 
+       </select> 
+  
+       <label for="editinputdescProyeccion">Desc. proyección:</label> <input id="editinputdescProyeccion" type="text" > 
+       <label for="editinputtradActo">Traducción acto:</label> 
+       <select id="editinputtradActo" data-role="flipswitch"> 
+         <option value="0">No</option> 
+         <option value="1">Si</option> 
+       </select> 
+  
+       <label for="editinputidiomaActo">Idioma acto:</label> <input id="editinputidiomaActo" type="text" > 
+       <label for="editinputmodoActo">Modo acto:</label> <input id="editinputmodoActo" type="text" > 
+       <label for="editinputtradPonente">Traducción ponente:</label> 
+       <select id="editinputtradPonente" data-role="flipswitch"> 
+         <option value="0">No</option> 
+         <option value="1">Si</option> 
+       </select> 
+  
+       <label for="editinputidiomaPonente">Idioma ponente:</label> <input id="editinputidiomaPonente" type="text" > 
+       <label for="editinputmodoPonente">Modo ponente:</label> <input id="editinputmodoPonente" type="text" > 
+       <label for="editinputcomentarios">Comentarios:</label> <input id="editinputcomentarios" type="text" > 
+       <label for="editinputreservAsientos">Reserva de asientos:</label> <input id="editinputreservAsientos" type="text" > 
+       <label for="editinputdetReservAsientos">Detalle reserv. asientos:</label> <input id="editinputdetReservAsientos" type="text" > 
+       <label for="editinputincMediosTec">Incidencia medios técnicos:</label> <input id="editinputincMediosTec" type="text" > 
+       <label for="editinputincSala">Incidencia sala:</label> <input id="editinputincSala" type="text" > 
+       <label for="editinputpuntComienzo">Puntualidad comienzo:</label> <input id="editinputpuntComienzo" type="text" > 
+       <label for="editinputpuntFin">Puntualidad fin:</label> <input id="editinputpuntFin" type="text" > 
+       <label for="editinputrespSala">Responsable sala:</label> <input id="editinputrespSala" type="text" > 
+       <label for="editinputvalActo">Valoración acto:</label> <input id="editinputvalActo" type="text" > 
+       <label for="editinputcomentFinal">Comentario final:</label> <input id="editinputcomentFinal" type="text" > 
+       <label for="editinputsaladesc">Sala:</label> 
+       <input id="editinputsala" type="text" class="ui-hidden-accessible"> 
+              <table class="tableSearch">
+                <tr>
+                  <td class="tdSearch">
+                     <input id="editinputsaladesc" class="ui-state-disabled" type="text"xs>  
+                  </td>
+                  <td class="tdButton">
+                    <input id="editinputsalabtn" type="button" data-icon="search">
+                  </td>
+                </tr>
+              </table>
+
+       <label for="editinputdistMesa">Distribución mesa:</label> <input id="editinputdistMesa" type="text" > 
+       <label for="editinputpatrocinadordesc">Patrocinador:</label> 
+       <input id="editinputpatrocinador" type="text" class="ui-hidden-accessible"> 
+       <table class="tableSearch">
+         <tr>
+           <td class="tdSearch">
+              <input id="editinputpatrocinadordesc" class="ui-state-disabled" type="text"xs>  
+           </td>
+           <td class="tdButton">
+             <input id="editinputpatrocinadorbtn" type="button" data-icon="search">
+           </td>
+         </tr>
+       </table>
+       <label for="editinputobsPatrocinador">Obs. Patrocinador:</label> <input id="editinputobsPatrocinador" type="text" > 
+       <label for="editinputazafatadesc">Azafata:</label> 
+       <input id="editinputazafata" type="text" class="ui-hidden-accessible"> 
+       <table class="tableSearch">
+         <tr>
+           <td class="tdSearch">
+              <input id="editinputazafatadesc" class="ui-state-disabled" type="text"xs>  
+           </td>
+           <td class="tdButton">
+             <input id="editinputazafatabtn" type="button" data-icon="search">
+           </td>
+         </tr>
+       </table>
+       <label for="editinputotrasNecesidades">Otras necesidades:</label> <input id="editinputotrasNecesidades" type="text" > 
+       <label for="editinputaforo">Aforo:</label> <input id="editinputaforo" type="text" > 
+       <label for="editinputquedaronFuera">Quedaron fuera:</label> <input id="editinputquedaronFuera" type="text" > 
+       <label for="editinputotrasValoraciones">Otras valoraciones:</label> <input id="editinputotrasValoraciones" type="text" > 
+       <label for="editinputtraductorActodesc">Traductor acto:</label> 
+       <input id="editinputtraductorActo" type="text" class="ui-hidden-accessible"> 
+       <table class="tableSearch">
+         <tr>
+           <td class="tdSearch">
+              <input id="editinputtraductorActodesc" class="ui-state-disabled" type="text"xs>  
+           </td>
+           <td class="tdButton">
+             <input id="editinputtraductorActobtn" type="button" data-icon="search">
+           </td>
+         </tr>
+       </table>
+
+       <label for="editinputtraductorPonentedesc">Traductor ponente:</label> 
+       <input id="editinputtraductorPonente" type="text" class="ui-hidden-accessible"> 
+       <table class="tableSearch">
+          <tr>
+            <td class="tdSearch">
+               <input id="editinputtraductorPonentedesc" class="ui-state-disabled" type="text"xs>  
+            </td>
+            <td class="tdButton">
+              <input id="editinputtraductorPonentebtn" type="button" data-icon="search">
+            </td>
+          </tr>
+        </table>
+
+       <label for="editinputresponsableActodesc">Responsable acto:</label> 
+       <input id="editinputresponsableActo" type="text" class="ui-hidden-accessible"> 
+       <table class="tableSearch">
+          <tr>
+            <td class="tdSearch">
+               <input id="editinputresponsableActodesc" class="ui-state-disabled" type="text"xs>  
+            </td>
+            <td class="tdButton">
+              <input id="editinputresponsableActobtn" type="button" data-icon="search">
+            </td>
+          </tr>
+        </table>
+
+       <input id="btBorrar" type="button" value="Borrar"> 
+       <!--input id="btCancelar" type="button" value="Cancelar"--> 
+     </div> 
+     <div data-role="footer" data-position="fixed"> 
+        <div data-role="navbar"> 
+          <ul> 
+            <li><a href="http://localhost:8080/index.html#pgEdit" class="ui-btn-active ui-state-persist" data-icon="edit" rel="external">Datos</a></li>
+            <li><a href="http://localhost:8080/TimingActos.html#pgHome" data-icon="bullets" rel="external">Secuencia</a></li> 
+            <li><a href="http://localhost:8080/PlaningActos.html#pgNew" data-icon="plus" rel="external">Agenda</a></li> 
+            <li><a href="http://localhost:8080/EmActosVoluntarios.html#pgTables" data-icon="gear" rel="external">Participantes</a></li> 
+          </ul> 
+        </div> 
+     </div> 
+   </div> 
+  <div id="pgNew" data-role="page"> 
+    <div data-role="header"> 
+      <H1>Nuevo acto</H1> 
+      <img class="ui-btn-right headerLogo" src="./img/logoEm2017.png" /> 
+     </div> 
+    <div class="ui-content"> 
+        <div data-role="popup" id="popUpEmptyEm" data-position-to="window" data-transition="turn">
+          <label for="btnReturnHomeFromNew">Primero debe seleccionar el EM en el que será el acto</label>
+          <input id="btnReturnHomeFromNew" type="button" value="Return to home">
+        </div>
+        <div data-role="popup" id="newpopUpPersonasList" data-position-to="window" data-transition="turn">
+            <ul id="newlvPersonas" data-role="listview" data-filter="true" data-inset="true"></ul> 
+        </div>
+        <div data-role="popup" id="newpopUpSalasList" data-position-to="window" data-transition="turn">
+            <ul id="newlvSalas" data-role="listview" data-filter="true" data-inset="true"></ul> 
+        </div>
+       <label for="newinputidEm">Id EM:</label> <input id="newinputidEm" class="ui-state-disabled" type="text" > 
+       <label for="newinputdescripcion">Descripcion:</label> <input id="newinputdescripcion" type="text" > 
+       <label for="newinputdia">Dia:</label> <input id="newinputdia" type="date" > 
+       <label for="newinputinicio">Inicio:</label> <input id="newinputinicio" type="time" > 
+       <label for="newinputfin">Fin:</label> <input id="newinputfin" type="time" > 
+       <label for="newinputasistencia">Asistencia:</label> <input id="newinputasistencia" type="text" > 
+       <label for="newinputavisos">Avisos:</label> <input id="newinputavisos" type="text" > 
+       <label for="newinputturnoPreg">Turno preguntas:</label> 
+       <select id="newinputturnoPreg" data-role="flipswitch"> 
+         <option value="0">No</option> 
+         <option value="1">Si</option> 
+       </select> 
+  
+       <label for="newinputturnoPregModo">Modo turno preguntas:</label> <input id="newinputturnoPregModo" type="text" > 
+       <label for="newinputmicroMesa">Micro mesa:</label> <input id="newinputmicroMesa" type="text" > 
+       <label for="newinputmicroPie">Micro pie:</label> <input id="newinputmicroPie" type="text" > 
+       <label for="newinputmicroInalambrico">Micro inalambrico:</label> <input id="newinputmicroInalambrico" type="text" > 
+       <label for="newinputmatProyectar">Material a proyectar:</label> 
+       <select id="newinputmatProyectar" data-role="flipswitch"> 
+         <option value="0">No</option> 
+         <option value="1">Si</option> 
+       </select> 
+  
+       <label for="newinputdescProyeccion">Desc. proyección:</label> <input id="newinputdescProyeccion" type="text" > 
+       <label for="newinputtradActo">Traducción acto:</label> 
+       <select id="newinputtradActo" data-role="flipswitch"> 
+         <option value="0">No</option> 
+         <option value="1">Si</option> 
+       </select> 
+  
+       <label for="newinputidiomaActo">Idioma acto:</label> <input id="newinputidiomaActo" type="text" > 
+       <label for="newinputmodoActo">Modo acto:</label> <input id="newinputmodoActo" type="text" > 
+       <label for="newinputtradPonente">Traducción ponente:</label> 
+       <select id="newinputtradPonente" data-role="flipswitch"> 
+         <option value="0">No</option> 
+         <option value="1">Si</option> 
+       </select> 
+  
+       <label for="newinputidiomaPonente">Idioma ponente:</label> <input id="newinputidiomaPonente" type="text" > 
+       <label for="newinputmodoPonente">Modo ponente:</label> <input id="newinputmodoPonente" type="text" > 
+       <label for="newinputcomentarios">Comentarios:</label> <input id="newinputcomentarios" type="text" > 
+       <label for="newinputreservAsientos">Reserva de asientos:</label> <input id="newinputreservAsientos" type="text" > 
+       <label for="newinputdetReservAsientos">Detalle reserv. asientos:</label> <input id="newinputdetReservAsientos" type="text" > 
+       <label for="newinputincMediosTec">Incidencia medios técnicos:</label> <input id="newinputincMediosTec" type="text" > 
+       <label for="newinputincSala">Incidencia sala:</label> <input id="newinputincSala" type="text" > 
+       <label for="newinputpuntComienzo">Puntualidad comienzo:</label> <input id="newinputpuntComienzo" type="text" > 
+       <label for="newinputpuntFin">Puntualidad fin:</label> <input id="newinputpuntFin" type="text" > 
+       <label for="newinputrespSala">Responsable sala:</label> <input id="newinputrespSala" type="text" > 
+       <label for="newinputvalActo">Valoración acto:</label> <input id="newinputvalActo" type="text" > 
+       <label for="newinputcomentFinal">Comentario final:</label> <input id="newinputcomentFinal" type="text" > 
+       <label for="newinputsaladesc">Sala:</label> 
+       <input id="newinputsala" type="text" class="ui-hidden-accessible"> 
+              <table class="tableSearch">
+                <tr>
+                  <td class="tdSearch">
+                     <input id="newinputsaladesc" class="ui-state-disabled" type="text"xs>  
+                  </td>
+                  <td class="tdButton">
+                    <input id="newinputsalabtn" type="button" data-icon="search">
+                  </td>
+                </tr>
+              </table>
+       <label for="newinputdistMesa">Distribución mesa:</label> <input id="newinputdistMesa" type="text" > 
+       <label for="newinputpatrocinadordesc">Patrocinador:</label> 
+       <input id="newinputpatrocinador" class="ui-hidden-accessible" type="text" > 
+       <table class="tableSearch">
+         <tr>
+           <td class="tdSearch">
+              <input id="newinputpatrocinadordesc" class="ui-state-disabled" type="text"xs>  
+           </td>
+           <td class="tdButton">
+             <input id="newinputpatrocinadorbtn" type="button" data-icon="search">
+           </td>
+         </tr>
+       </table>
+       <label for="newinputobsPatrocinador">Obs. Patrocinador:</label> <input id="newinputobsPatrocinador" type="text" > 
+       <label for="newinputazafatadesc">Azafata:</label> 
+       <input id="newinputazafata" type="text" class="ui-hidden-accessible"> 
+       <table class="tableSearch">
+         <tr>
+           <td class="tdSearch">
+              <input id="newinputazafatadesc" class="ui-state-disabled" type="text"xs>  
+           </td>
+           <td class="tdButton">
+             <input id="newinputazafatabtn" type="button" data-icon="search">
+           </td>
+         </tr>
+       </table>
+       <label for="newinputotrasNecesidades">Otras necesidades:</label> <input id="newinputotrasNecesidades" type="text" > 
+       <label for="newinputaforo">Aforo:</label> <input id="newinputaforo" type="text" > 
+       <label for="newinputquedaronFuera">Quedaron fuera:</label> <input id="newinputquedaronFuera" type="text" > 
+       <label for="newinputotrasValoraciones">Otras valoraciones:</label> <input id="newinputotrasValoraciones" type="text" > 
+       <label for="newinputtraductorActodesc">Traductor acto:</label> 
+       <input id="newinputtraductorActo" type="text" class="ui-hidden-accessible"> 
+       <table class="tableSearch">
+         <tr>
+           <td class="tdSearch">
+              <input id="newinputtraductorActodesc" class="ui-state-disabled" type="text"xs>  
+           </td>
+           <td class="tdButton">
+             <input id="newinputtraductorActobtn" type="button" data-icon="search">
+           </td>
+         </tr>
+       </table>
+       <label for="newinputtraductorPonentedesc">Traductor ponente:</label> 
+       <input id="newinputtraductorPonente" type="text" class="ui-hidden-accessible"> 
+       <table class="tableSearch">
+         <tr>
+           <td class="tdSearch">
+              <input id="newinputtraductorPonentedesc" class="ui-state-disabled" type="text"xs>  
+           </td>
+           <td class="tdButton">
+             <input id="newinputtraductorPonentebtn" type="button" data-icon="search">
+           </td>
+         </tr>
+       </table>
+       <label for="newinputresponsableActodesc">Responsable acto:</label> 
+       <input id="newinputresponsableActo" type="text" class="ui-hidden-accessible"> 
+       <table class="tableSearch">
+         <tr>
+           <td class="tdSearch">
+              <input id="newinputresponsableActodesc" class="ui-state-disabled" type="text"xs>  
+           </td>
+           <td class="tdButton">
+             <input id="newinputresponsableActobtn" type="button" data-icon="search">
+           </td>
+         </tr>
+       </table>
+       <input id="btGuardar" type="button" value="Guardar"> 
+       <input id="btCancelar" type="button" value="Cancelar"> 
+     </div> 
+     <div data-role="footer" data-position="fixed"> 
+      <div data-role="navbar"> 
+        <ul> 
+          <li><a href="http://localhost:8080/index.html#pgHome" data-icon="bullets">Actos</a></li> 
+          <li><a href="http://localhost:8080/index.html#pgNew" class="ui-btn-active ui-state-persist" data-icon="plus">Nuevo</a></li> 
+          <li><a href="http://localhost:8080/index.html#pgTables" data-icon="gear">Tablas</a></li> 
+        </ul> 
+      </div> 
+    </div> 
+  </div> 
+  <div id="pgTables" data-role="page"> 
+      <div data-role="header"> 
+        <H1>Nuevo acto</H1> 
+        <img class="ui-btn-right headerLogo" src="./img/logoEm2017.png" /> 
+       </div> 
+      <div class="ui-content"> 
+          <ul id="lvTablas" data-role="listview" data-filter="true" data-inset="true">
+            <!--
+              <li><a class="lvTablasItem" id="lvTablasPersonas" href="#">Personas</a></li>
+            -->
+            <li><a href="http://localhost:8080/DatosEm.html#pgHome" rel="external">Datos EM</a></li>
+            <li><a href="http://localhost:8080/Personas.html#pgHome" rel="external">Personas</a></li>
+            <li><a href="http://localhost:8080/Profesiones.html#pgHome" rel="external">Profesiones</a></li>
+            <li><a href="http://localhost:8080/Salas.html#pgHome" rel="external">Salas</a></li>
+            <li><a href="http://localhost:8080/TipoRelacion.html#pgHome" rel="external">Tipos de relación</a></li>
+          </ul> 
+          <div data-role="footer" data-position="fixed"> 
+              <div data-role="navbar"> 
+                <ul> 
+                  <li><a href="http://localhost:8080/index.html#pgHome" data-icon="bullets">Actos</a></li> 
+                  <li><a href="http://localhost:8080/index.html#pgNew" class="ui-btn-active ui-state-persist" data-icon="plus">Nuevo</a></li> 
+                  <li><a href="http://localhost:8080/index.html#pgTables" data-icon="gear">Tablas</a></li> 
+                </ul> 
+              </div> 
+          </div> 
+      </div>
+  </div>
+</body> 
+</html> 

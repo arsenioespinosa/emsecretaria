@@ -1,0 +1,88 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <meta charset="UTF-8"> 
+  <title>Profesiones</title> 
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css" /> 
+  <link rel="stylesheet" href="css/style.css" /> 
+  <script src="js/externo/jquery-1.11.1.min.js"></script> 
+  <script src="js/externo/jquery.mobile-1.4.5.js"></script> 
+  <script src="js/externo/underscore.js"></script> 
+  <script src="js/externo/backbone.js"></script> 
+  <script src="js/modelos/ProfesionesEntity.js"></script> 
+  <script src="js/modelos/ProfesionesList.js"></script> 
+  <script src="js/vistas/ProfesionesNewView.js"></script> 
+  <script src="js/vistas/ProfesionesEditView.js"></script> 
+  <script src="js/vistas/ProfesionesListView.js"></script> 
+  <script src="js/ProfesionesApp.js"></script> 
+</head> 
+<body> 
+  <div id="pgHome" data-role="page"> 
+    <div data-role="header"> 
+       <H1>Lista profesiones</H1> 
+       <img class="ui-btn-right headerLogo" src="./img/logoEm2017.png" /> 
+     </div> 
+    <div class="ui-content"> 
+      <ul data-role="listview" data-filter="true" data-inset="true"></ul> 
+    </div> 
+    <div data-role="footer" data-position="fixed"> 
+      <div data-role="navbar"> 
+        <ul> 
+          <li><a href="#pgHome" class="ui-btn-active ui-state-persist" data-icon="bullets">Lista</a></li> 
+          <li><a href="#pgNew" data-icon="plus">Nueva</a></li> 
+          <li><a href="http://localhost:8080/index.html#pgHome" rel="external" data-icon="star">EM</a></li> 
+        </ul> 
+      </div> 
+    </div> 
+  </div> 
+  <div id="pgEdit" data-role="page"> 
+    <div data-role="header" data-add-back-btn="true" data-back-btn-text="Atr&aacute;s" > 
+       <H1>Editar profesión</H1> 
+      <img class="ui-btn-right headerLogo" src="./img/logoEm2017.png" /> 
+     </div> 
+    <div class="ui-content"> 
+       <!--input id="txtEditarTitulo" type="text"> 
+       <input id="txtEditarFecha" type="text" disabled> 
+       <input id="txtEditarColor" type="color"> 
+       <label for="txtEditarVisualizar">Visualizar:</label> 
+       <select id="txtEditarVisualizar" data-role="flipswitch"> 
+         <option value="off">Off</option> 
+         <option value="on">On</option> 
+       </select> 
+       --> 
+       <label for="editinputdescripcion">Descripción:</label> <input id="editinputdescripcion" type="text" > 
+       <input id="btBorrar" type="button" value="Borrar"> 
+       <!--input id="btCancelar" type="button" value="Cancelar"--> 
+     </div> 
+   </div> 
+  <div id="pgNew" data-role="page"> 
+    <div data-role="header"> 
+      <H1>Nueva profesión</H1> 
+      <img class="ui-btn-right headerLogo" src="./img/logoEm2017.png" /> 
+     </div> 
+    <div class="ui-content"> 
+       <!--input id="txtEditarTitulo" type="text"> 
+       <input id="txtEditarFecha" type="text" disabled> 
+       <input id="txtEditarColor" type="color"> 
+       <label for="txtEditarVisualizar">Visualizar:</label> 
+       <select id="txtEditarVisualizar" data-role="flipswitch"> 
+         <option value="off">Off</option> 
+         <option value="on">On</option> 
+       </select> 
+       <input id="btBorrar" type="button" value="Borrar"--> 
+       <label for="newinputdescripcion">Descripción:</label> <input id="newinputdescripcion" type="text" > 
+       <input id="btGuardar" type="button" value="Guardar"> 
+       <input id="btCancelar" type="button" value="Cancelar"> 
+     </div> 
+     <div data-role="footer" data-position="fixed"> 
+      <div data-role="navbar"> 
+        <ul> 
+          <li><a href="#pgHome" data-icon="bullets">Lista</a></li> 
+          <li><a href="#pgNew" class="ui-btn-active ui-state-persist" data-icon="plus">Nueva</a></li> 
+          <li><a href="http://localhost:8080/index.html#pgHome" rel="external" data-icon="star">EM</a></li> 
+        </ul> 
+      </div> 
+    </div> 
+  </div> 
+</body> 
+</html> 

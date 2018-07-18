@@ -1,0 +1,97 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <meta charset="UTF-8"> 
+  <title>TimingActos</title> 
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css" /> 
+  <link rel="stylesheet" href="css/style.css" /> 
+  <script src="js/externo/jquery-1.11.1.min.js"></script> 
+  <script src="js/externo/jquery.mobile-1.4.5.js"></script> 
+  <script src="js/externo/underscore.js"></script> 
+  <script src="js/externo/backbone.js"></script> 
+  <script src="js/modelos/ActosEntity.js"></script>
+  <script src="js/modelos/ActosList.js"></script>
+  <script src="js/modelos/TimingActosEntity.js"></script> 
+  <script src="js/modelos/TimingActosList.js"></script> 
+  <script src="js/vistas/TimingActosNewView.js"></script> 
+  <script src="js/vistas/TimingActosEditView.js"></script> 
+  <script src="js/vistas/TimingActosListView.js"></script> 
+  <script src="js/TimingActosApp.js"></script> 
+</head> 
+<body> 
+  <div id="pgHome" data-role="page"> 
+    <div data-role="header"> 
+       <H1 id="titulo">Timing actos</H1> 
+       <img class="ui-btn-right headerLogo" src="./img/logoEm2017.png" /> 
+     </div> 
+    <div class="ui-content"> 
+      <label>Secuencia del acto:</label>
+      <ul data-role="listview" data-filter="true" data-inset="true"></ul> 
+    </div> 
+    <div data-role="footer" data-position="fixed"> 
+      <div data-role="navbar"> 
+        <ul> 
+          <li><a href="http://localhost:8080/index.html#pgEdit" data-icon="edit" rel="external">Datos acto</a></li>
+          <li><a href="http://localhost:8080/TimingActos.html#pgHome" class="ui-btn-active ui-state-persist" data-icon="bullets">Secuencia</a></li> 
+          <li><a href="http://localhost:8080/TimingActos.html#pgNew" data-icon="plus">Nueva</a></li> 
+        </ul> 
+      </div> 
+    </div> 
+  </div> 
+  <div id="pgEdit" data-role="page"> 
+    <div data-role="header" data-add-back-btn="true" data-back-btn-text="Atr&aacute;s" > 
+       <H1 id="#tituloEdit">Editar timing</H1> 
+      <img class="ui-btn-right headerLogo" src="./img/logoEm2017.png" /> 
+     </div> 
+    <div class="ui-content"> 
+       <!--input id="txtEditarTitulo" type="text"> 
+       <input id="txtEditarFecha" type="text" disabled> 
+       <input id="txtEditarColor" type="color"> 
+       <label for="txtEditarVisualizar">Visualizar:</label> 
+       <select id="txtEditarVisualizar" data-role="flipswitch"> 
+         <option value="off">Off</option> 
+         <option value="on">On</option> 
+       </select> 
+       --> 
+       <label for="editinputidActo">Editar timing:</label> <input id="editinputidActo" type="text" class="ui-hidden-accessible"> 
+       <label for="editinputevento">Evento:</label> <input id="editinputevento" type="text" > 
+       <label for="editinputdesde">Desde:</label> <input id="editinputdesde" type="time" > 
+       <label for="editinputhasta">Hasta:</label> <input id="editinputhasta" type="time" > 
+       <input id="btBorrar" type="button" value="Borrar"> 
+       <!--input id="btCancelar" type="button" value="Cancelar"--> 
+     </div> 
+   </div> 
+  <div id="pgNew" data-role="page"> 
+    <div data-role="header"> 
+      <H1 id="tituloNew">Nuevo timing</H1> 
+      <img class="ui-btn-right headerLogo" src="./img/logoEm2017.png" /> 
+     </div> 
+    <div class="ui-content"> 
+       <!--input id="txtEditarTitulo" type="text"> 
+       <input id="txtEditarFecha" type="text" disabled> 
+       <input id="txtEditarColor" type="color"> 
+       <label for="txtEditarVisualizar">Visualizar:</label> 
+       <select id="txtEditarVisualizar" data-role="flipswitch"> 
+         <option value="off">Off</option> 
+         <option value="on">On</option> 
+       </select> 
+       <input id="btBorrar" type="button" value="Borrar"--> 
+       <label for="newinputidActo">Nueva secuencia:</label> <input id="newinputidActo" type="text" class="ui-hidden-accessible"> 
+       <label for="newinputevento">Evento:</label> <input id="newinputevento" type="text" > 
+       <label for="newinputdesde">Desde:</label> <input id="newinputdesde" type="time" > 
+       <label for="newinputhasta">Hasta:</label> <input id="newinputhasta" type="time" > 
+       <input id="btGuardar" type="button" value="Guardar"> 
+       <input id="btCancelar" type="button" value="Cancelar"> 
+     </div> 
+     <div data-role="footer" data-position="fixed"> 
+      <div data-role="navbar"> 
+        <ul> 
+          <li><a href="http://localhost:8080/index.html#pgEdit" data-icon="edit" rel="external">Datos acto</a></li>
+          <li><a href="http://localhost:8080/TimingActos.html#pgHome" data-icon="bullets">Secuencia</a></li> 
+          <li><a href="http://localhost:8080/TimingActos.html#pgNew" class="ui-btn-active ui-state-persist" data-icon="plus">Nueva</a></li> 
+        </ul> 
+      </div> 
+    </div> 
+  </div> 
+</body> 
+</html> 

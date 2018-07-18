@@ -1,0 +1,176 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <meta charset="UTF-8"> 
+  <title>Personas</title> 
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css" /> 
+  <link rel="stylesheet" href="css/style.css" /> 
+  <script src="js/externo/jquery-1.11.1.min.js"></script> 
+  <script src="js/externo/jquery.mobile-1.4.5.js"></script> 
+  <script src="js/externo/underscore.js"></script> 
+  <script src="js/externo/backbone.js"></script> 
+  <script src="js/modelos/PersonasEntity.js"></script> 
+  <script src="js/modelos/PersonasList.js"></script> 
+  <script src="js/modelos/ProfesionesEntity.js"></script> 
+  <script src="js/modelos/ProfesionesList.js"></script> 
+  <script src="js/vistas/PersonasNewView.js"></script> 
+  <script src="js/vistas/PersonasEditView.js"></script> 
+  <script src="js/vistas/PersonasListView.js"></script> 
+  <script src="js/PersonasApp.js"></script> 
+</head> 
+<body> 
+  <div id="pgHome" data-role="page"> 
+    <div data-role="header"> 
+       <H1>Lista personas</H1> 
+       <img class="ui-btn-right headerLogo" src="./img/logoEm2017.png" /> 
+     </div> 
+    <div class="ui-content"> 
+      <ul data-role="listview" data-filter="true" data-inset="true"></ul> 
+    </div> 
+    <div data-role="footer" data-position="fixed"> 
+      <div data-role="navbar"> 
+        <ul> 
+          <li><a href="http://localhost:8080/Personas.html#pgHome" class="ui-btn-active ui-state-persist" data-icon="bullets">Lista</a></li> 
+          <li><a href="http://localhost:8080/Personas.html#pgNew" data-icon="plus">Nueva</a></li> 
+          <li><a href="http://localhost:8080/index.html#pgHome" rel="external" data-icon="star">EM</a></li> 
+        </ul> 
+      </div> 
+    </div> 
+  </div> 
+  <div id="pgEdit" data-role="page"> 
+    <div data-role="header" data-add-back-btn="true" data-back-btn-text="Atr&aacute;s" > 
+       <H1>Editar persona</H1> 
+      <img class="ui-btn-right headerLogo" src="./img/logoEm2017.png" /> 
+     </div> 
+    <div class="ui-content"> 
+       <!--input id="txtEditarTitulo" type="text"> 
+       <input id="txtEditarFecha" type="text" disabled> 
+       <input id="txtEditarColor" type="color"> 
+       <label for="txtEditarVisualizar">Visualizar:</label> 
+       <select id="txtEditarVisualizar" data-role="flipswitch"> 
+         <option value="off">Off</option> 
+         <option value="on">On</option> 
+       </select> 
+       --> 
+       <div data-role="popup" id="editpopUpProfesionesList" data-position-to="window" data-transition="turn">
+          <ul id="editlvProfesiones" data-role="listview" data-filter="true" data-inset="true"></ul> 
+      </div>
+       <label for="editinputetiqueta">Etiqueta:</label> 
+       <select id="editinputetiqueta" data-role="flipswitch"> 
+        <option value="0">No</option> 
+        <option value="1">Si</option> 
+        </select> 
+  
+       <label for="editinputalta">Fecha Alta:</label> <input id="editinputalta" type="date" > 
+       <label for="editinputbaja">Fecha Baja:</label> <input id="editinputbaja" type="date" > 
+       <label for="editinputtratamiento">Tratamiento:</label> <input id="editinputtratamiento" type="text" > 
+       <label for="editinputnombre">Nombre:</label> <input id="editinputnombre" type="text" > 
+       <label for="editinputapellidos">Apellidos:</label> <input id="editinputapellidos" type="text" > 
+       <label for="editinputempresa">Empresa:</label> <input id="editinputempresa" type="text" > 
+       <label for="editinputcargo">Cargo:</label> <input id="editinputcargo" type="text" > 
+       <label for="editinputdireccion">Dirección:</label> <input id="editinputdireccion" type="text" > 
+       <label for="editinputdireccion2">Dirección 2:</label> <input id="editinputdireccion2" type="text" > 
+       <label for="editinputcp">CP:</label> <input id="editinputcp" type="text" > 
+       <label for="editinputlocalidad">Localidad:</label> <input id="editinputlocalidad" type="text" > 
+       <label for="editinputprovincia">Provincia:</label> <input id="editinputprovincia" type="text" > 
+       <label for="editinputpais">País:</label> <input id="editinputpais" type="text" > 
+       <label for="editinputtfnoDomicilio">Tfno. Domicilio:</label> <input id="editinputtfnoDomicilio" type="text" > 
+       <label for="editinputtfnoOficina">Tfno. Oficina:</label> <input id="editinputtfnoOficina" type="text" > 
+       <label for="editinputtfnoMovil">Tfno. Móvil:</label> <input id="editinputtfnoMovil" type="text" > 
+       <label for="editinputemail">Email:</label> <input id="editinputemail" type="text" > 
+       <label for="editinputemail2">Email 2:</label> <input id="editinputemail2" type="text" > 
+       <label for="editinputobservaciones">Observaciones:</label> <input id="editinputobservaciones" type="text" > 
+       <label for="editinputprofesiondesc">Profesión:</label> 
+       <input id="editinputprofesion" type="text" class="ui-hidden-accessible">  
+       <table class="tableSearch">
+         <tr>
+           <td class="tdSearch">
+              <input id="editinputprofesiondesc" class="ui-state-disabled" type="text">  
+           </td>
+           <td class="tdButton">
+             <input id="editinputprofesionbtn" type="button" data-icon="search">
+           </td>
+         </tr>
+       </table>
+       <label for="editinputpersonaRef">Persona referencia:</label> <input id="editinputpersonaRef" type="text" > 
+       <label for="editinputbiografia">Biografía:</label> <input id="editinputbiografia" type="text" > 
+       <label for="editinputidioma">Idioma:</label> <input id="editinputidioma" type="text" > 
+       <input id="btBorrar" type="button" value="Borrar"> 
+       <!--input id="btCancelar" type="button" value="Cancelar"--> 
+     </div> 
+   </div> 
+  <div id="pgNew" data-role="page"> 
+    <div data-role="header"> 
+      <H1>Nueva persona</H1> 
+      <img class="ui-btn-right headerLogo" src="./img/logoEm2017.png" /> 
+     </div> 
+    <div class="ui-content"> 
+       <!--input id="txtEditarTitulo" type="text"> 
+       <input id="txtEditarFecha" type="text" disabled> 
+       <input id="txtEditarColor" type="color"> 
+       <label for="txtEditarVisualizar">Visualizar:</label> 
+       <select id="txtEditarVisualizar" data-role="flipswitch"> 
+         <option value="off">Off</option> 
+         <option value="on">On</option> 
+       </select> 
+       <input id="btBorrar" type="button" value="Borrar"--> 
+
+       <div data-role="popup" id="newpopUpProfesionesList" data-position-to="window" data-transition="turn">
+          <ul id="newlvProfesiones" data-role="listview" data-filter="true" data-inset="true"></ul> 
+      </div>
+
+       <label for="newinputetiqueta">Etiqueta:</label> 
+       <select id="newinputetiqueta" data-role="flipswitch"> 
+        <option value="0">No</option> 
+        <option value="1">Si</option> 
+        </select> 
+  
+       <label for="newinputalta">Fecha Alta:</label> <input id="newinputalta" type="date" > 
+       <label for="newinputbaja">Fecha Baja:</label> <input id="newinputbaja" type="date" > 
+       <label for="newinputtratamiento">Tratamiento:</label> <input id="newinputtratamiento" type="text" > 
+       <label for="newinputnombre">Nombre:</label> <input id="newinputnombre" type="text" > 
+       <label for="newinputapellidos">Apellidos:</label> <input id="newinputapellidos" type="text" > 
+       <label for="newinputempresa">Empresa:</label> <input id="newinputempresa" type="text" > 
+       <label for="newinputcargo">Cargo:</label> <input id="newinputcargo" type="text" > 
+       <label for="newinputdireccion">Dirección:</label> <input id="newinputdireccion" type="text" > 
+       <label for="newinputdireccion2">Dirección 2:</label> <input id="newinputdireccion2" type="text" > 
+       <label for="newinputcp">CP:</label> <input id="newinputcp" type="text" > 
+       <label for="newinputlocalidad">Localidad:</label> <input id="newinputlocalidad" type="text" > 
+       <label for="newinputprovincia">Provincia:</label> <input id="newinputprovincia" type="text" > 
+       <label for="newinputpais">País:</label> <input id="newinputpais" type="text" > 
+       <label for="newinputtfnoDomicilio">Tfno. Domicilio:</label> <input id="newinputtfnoDomicilio" type="text" > 
+       <label for="newinputtfnoOficina">Tfno. Oficina:</label> <input id="newinputtfnoOficina" type="text" > 
+       <label for="newinputtfnoMovil">Tfno. Móvil:</label> <input id="newinputtfnoMovil" type="text" > 
+       <label for="newinputemail">Email:</label> <input id="newinputemail" type="text" > 
+       <label for="newinputemail2">Email 2:</label> <input id="newinputemail2" type="text" > 
+       <label for="newinputobservaciones">Observaciones:</label> <input id="newinputobservaciones" type="text" > 
+       <label for="newinputprofesiondesc">Profesión:</label> 
+       <input id="newinputprofesion" type="text" class="ui-hidden-accessible"> 
+       <table class="tableSearch">
+         <tr>
+           <td class="tdSearch">
+              <input id="newinputprofesiondesc" class="ui-state-disabled" type="text">  
+           </td>
+           <td class="tdButton">
+             <input id="newinputprofesionbtn" type="button" data-icon="search">
+           </td>
+         </tr>
+       </table>
+       <label for="newinputpersonaRef">Persona referencia:</label> <input id="newinputpersonaRef" type="text" > 
+       <label for="newinputbiografia">Biografía:</label> <input id="newinputbiografia" type="text" > 
+       <label for="newinputidioma">Idioma:</label> <input id="newinputidioma" type="text" > 
+       <input id="btGuardar" type="button" value="Guardar"> 
+       <input id="btCancelar" type="button" value="Cancelar"> 
+     </div> 
+     <div data-role="footer" data-position="fixed"> 
+      <div data-role="navbar"> 
+        <ul> 
+          <li><a href="http://localhost:8080/Personas.html#pgHome" data-icon="bullets">Lista</a></li> 
+          <li><a href="http://localhost:8080/Personas.html#pgNew" class="ui-btn-active ui-state-persist" data-icon="plus">Nueva</a></li> 
+          <li><a href="http://localhost:8080/index.html#pgHome" rel="external" data-icon="star">EM</a></li> 
+        </ul> 
+      </div> 
+    </div> 
+  </div> 
+</body> 
+</html> 
