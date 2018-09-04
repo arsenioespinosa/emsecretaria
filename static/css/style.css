@@ -1,0 +1,54 @@
+.headerLogo{
+	height: 80%;
+	z-index: 1;
+}
+.mainHeaderLogo{
+	width: 80%;
+	max-width: 15em;
+	z-index: 1;
+}
+.mainHeaderUserInfo{
+	text-align: right;	
+}
+.tableSearch{
+	width: 100%;
+}
+.tdSearch{
+	width: 90%;
+}
+.tdButton{
+	width: 10%;
+	height: 100%;
+}
+.userHeader2{
+	width: 100%;
+	position:absolute;
+	top: 0;
+	left:0;
+	z-index: 1;
+}
+.userHeader2 img{
+	width:80%;
+	max-width: 15em;
+	float:left;
+}
+.userHeader2 div{
+	position:absolute;
+	top:0%;
+	left:90%;
+
+}
+.userHeader{
+	height: 	: 80%;
+	z-index: 1;
+}
+.userHeader img{
+	width:80%;
+	max-width: 15em;
+	float:left;
+}
+.userHeadertext{
+	float:right;
+	margin-top: 0.4em;
+	margin-right:0.2em;
+}

@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html> 
+<html> 
+<head> 
+  <meta charset="UTF-8"> 
+  <title>Login</title> 
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css" /> 
+  <link rel="stylesheet" href="css/style.css" /> 
+  <script src="js/externo/md5.min.js"></script> 
+  <script src="js/externo/jquery-1.11.1.min.js"></script> 
+  <script src="js/externo/jquery.mobile-1.4.5.js"></script> 
+  <script src="js/externo/underscore.js"></script> 
+  <script src="js/externo/backbone.js"></script> 
+  <script src="js/modelos/UsuariosEntity.js"></script> 
+  <script src="js/modelos/UsuariosList.js"></script> 
+  <script src="js/vistas/LoginView.js"></script> 
+  
+  <script src="js/LoginApp.js"></script> 
+</head> 
+<body> 
+  <div id="pgHome" data-role="page"> 
+    <div data-role="header" > 
+       <div class="userHeader3">
+          <img class="mainHeaderLogo" src="./img/logoEm2017.png" /> 
+          <span id="headerUserText" class="userHeadertext"></span>
+          
+        </div>
+     </div> 
+    <div data-role="content"> 
+      <div id="divDoLogin">
+        <div class="ui-field-contain">
+            <label for="editinputUsuario">Usuario:</label> <input id="editinputUsuario" type="text"> 
+            <label for="editinputPassword">Password:</label> <input id="editinputPassword" type="password"> 
+            <label for="tryLog"> </label> <button id="tryLog">Iniciar sesión</button>
+          </div>
+        </div>
+        <div id="divUndoLogin">
+          <label for="currentUser">Usuario actual:</label> <input id="currentUser" type="text"/>
+          <label for="tryUnlog"></label> <button id="tryUnlog">Desconectar</button>
+          
+        </div>
+        <label for="tryUnlog"></label> <button id="goHome">Ir a inicio</button>
+    </div> 
+    
+  </div>
+  <div id="pgLogged" data-role="page">
+    <div data-role="header">  
+      <img class="mainHeaderLogo" src="./img/logoEm2017.png" /> 
+    </div> 
+  </div> 
+</body> 
+</html> 
