@@ -2,7 +2,7 @@
  * Define una colección de em_actos_voluntarios 
  */ 
 var EmActosVoluntariosList = Backbone.Collection.extend({ 
-  url: 'http://localhost:8080/emsec/em_actos_voluntarios', 
+  url: '/emsec/em_actos_voluntarios', 
   model: EmActosVoluntariosEntity, 
   initialize: function () { 
     this.on('add', function (model, col, opt) { 

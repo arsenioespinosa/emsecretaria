@@ -62,9 +62,13 @@ var ActosNewView = Backbone.View.extend({
     this.renderSalasList();
    }, 
    checkEm: function(){
-    this.selectedEmId = window.sessionStorage.getItem('selectedEmId');
+    this.selectedEmId = window.localStorage.getItem('selectedEmId');
+
     if(this.selectedEmId == "0"){
        $("#popUpEmptyEm").popup("open"); 
+    }else{
+      this.model.set('idEm', this.selectedEmId);
+
     }
    },
    renderPersonasList: function(){
@@ -124,6 +128,9 @@ var ActosNewView = Backbone.View.extend({
      //'change #txtEditarTitulo': function(){ 
      //  this.model.set('titulo', this.$('#txtEditarTitulo').val()); 
      //}, 
+     'load': function(){
+        this.checkEm();
+     },
      'change #newinputidActo': function(){ 
        this.model.set('idActo', this.$('#newinputidActo').val()); 
      }, 
@@ -266,9 +273,9 @@ var ActosNewView = Backbone.View.extend({
        this.model.set('responsableActo', this.$('#newinputresponsableActo').val()); 
      }, 
      'click #btGuardar': function(){ 
-       if(this.selectedEmId != "0"){
+       //if(this.selectedEmId != "0"){
          this.model.set('idActo', undefined); 
-         this.model.set('idEm', this.selectedEmId);
+         //this.model.set('idEm', this.selectedEmId);
          this.collection.add(this.model); 
          $(':mobile-pagecontainer').pagecontainer('change','#pgHome'); 
          this.model = new ActosEntity(); 
@@ -282,9 +289,9 @@ var ActosNewView = Backbone.View.extend({
 
          //this.model.set('idActo', this.collection.get(this.collection.length -1).get('idActo')+1); 
          this.render(); 
-       }else{
-         this.checkEm();
-       }
+       //}else{
+       //  this.checkEm();
+       //}
      }, 
      'click #btCancelar': function(){ 
        this.model = new ActosEntity(); 

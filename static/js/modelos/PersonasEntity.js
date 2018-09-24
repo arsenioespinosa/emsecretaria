@@ -2,7 +2,7 @@
  * Clase que contiene los datos de personas 
  */ 
 var PersonasEntity = Backbone.Model.extend({ 
-  urlRoot: 'http://localhost:8080/emsec/personas', 
+  urlRoot: '/emsec/personas', 
   idAttribute:'idPersona', 
   initialize: function () { 
     if (!this.has('idPersona')) this.set('idPersona', 0); 

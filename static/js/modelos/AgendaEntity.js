@@ -2,7 +2,7 @@
  * Clase que contiene los datos de agenda 
  */ 
 var AgendaEntity = Backbone.Model.extend({ 
-  urlRoot: 'http://localhost:8080/emsec/agenda', 
+  urlRoot: '/emsec/agenda', 
   idAttribute:'idAgenda', 
   initialize: function () { 
     if (!this.has('idAgenda')) this.set('idAgenda', 0); 

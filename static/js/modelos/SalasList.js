@@ -2,7 +2,7 @@
  * Define una colección de salas 
  */ 
 var SalasList = Backbone.Collection.extend({ 
-  url: 'http://localhost:8080/emsec/salas', 
+  url: '/emsec/salas', 
   model: SalasEntity, 
   initialize: function () { 
     this.on('add', function (model, col, opt) { 

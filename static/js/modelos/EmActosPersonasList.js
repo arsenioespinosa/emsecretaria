@@ -2,7 +2,7 @@
  * Define una colección de em_actos_personas 
  */ 
 var EmActosPersonasList = Backbone.Collection.extend({ 
-  url: 'http://localhost:8080/emsec/em_actos_personas', 
+  url: '/emsec/em_actos_personas', 
   model: EmActosPersonasEntity, 
   initialize: function () { 
     this.on('add', function (model, col, opt) { 

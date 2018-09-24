@@ -2,7 +2,7 @@
  * Clase que contiene los datos de datos_em 
  */ 
 var DatosEmEntity = Backbone.Model.extend({ 
-  urlRoot: 'http://localhost:8080/emsec/datos_em', 
+  urlRoot: '/emsec/datos_em', 
   idAttribute:'idEm', 
   initialize: function () { 
     if (!this.has('idEm')) this.set('idEm', 0); 

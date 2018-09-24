@@ -7,6 +7,8 @@ var PlaningActosNewView = Backbone.View.extend({
        this.render(); 
    }, 
    render: function(){ 
+    var title = window.localStorage.getItem('selectedEmId') +" > "+ window.localStorage.getItem('selectedActoDesc');
+     this.$el.find('#lblIdEmNew').text(title);
      //this.$('#txtEditarTitulo').val(this.model.get('titulo')).textinput('refresh'); 
     this.$('#newinputidPlaning').val(this.model.get('idPlaning')).textinput('refresh'); 
     this.$('#newinputlastModificationUser').val(this.model.get('lastModificationUser')).textinput('refresh'); 
@@ -20,6 +22,34 @@ var PlaningActosNewView = Backbone.View.extend({
     this.$('#newinputhasta').val(this.model.get('hasta')).textinput('refresh'); 
     this.$('#newinputsala').val(this.model.get('sala')).textinput('refresh'); 
    }, 
+    renderSalasList: function(){
+    this.$el.find('#newlvSalas').empty();
+    if(this.salasList != undefined){
+      for (var i = 0; i < this.salasList.length; i++){
+          var m = this.salasList.at(i);
+          var str = '<li><a class="newlvSalasItem" id="'+m.get('idSala')+'" href="#">'+m.get('descripcion')+'</a></li>';
+          this.$el.find('#newlvSalas').append(str);
+      }
+      
+    }
+    this.$el.find('#newlvSalas').listview();
+   },
+   SetSalasList: function(salasList){
+    this.salasList = salasList;
+    //this.personasList.initialize();
+    this.renderSalasList();
+   },
+   GetSalaById: function(searchId){
+     var searchIndex = 0;
+     while(searchIndex < this.salasList.length){
+       if(this.salasList.at(searchIndex).get('idSala')==searchId)
+       {
+         return this.salasList.at(searchIndex);
+       }
+       searchIndex++;
+     }
+     return null;
+   },
    events:{ 
      //'change #txtEditarTitulo': function(){ 
      //  this.model.set('titulo', this.$('#txtEditarTitulo').val()); 
@@ -59,6 +89,13 @@ var PlaningActosNewView = Backbone.View.extend({
      }, 
      'click #btGuardar': function(){ 
        this.model.set('idPlaning', undefined); 
+       this.model.set('idActo', window.localStorage.getItem('selectedActoId'));
+       if(this.model.get('desde') === undefined){
+        this.model.set('desde', '');
+       }
+       if(this.model.get('hasta') === undefined){
+        this.model.set('hasta','');
+       }
        this.collection.add(this.model); 
        $(':mobile-pagecontainer').pagecontainer('change','#pgHome'); 
        this.model = new PlaningActosEntity(); 
@@ -71,6 +108,22 @@ var PlaningActosNewView = Backbone.View.extend({
        $(':mobile-pagecontainer').pagecontainer('change','#pgHome'); 
        this.render(); 
      }, 
+     'click #newinputsalabtn': function(){
+       this.renderSalasList();
+       $("#newpopUpSalasList").popup("open");
+     },
+     'click .newlvSalasItem': function(e){
+       $("#newpopUpSalasList").popup("close");
+       var pId = $(e.target).attr('id');
+       var pEnt = this.GetSalaById(pId);
+       
+       if(pEnt != null){
+         var pDes = pEnt.get('descripcion');
+          this.$('#newinputsala').val(pId).textinput('refresh'); 
+          this.model.set('sala', pId); 
+          this.$('#newinputsaladesc').val(pDes).textinput('refresh'); 
+       }
+     },
      'load': function(){ 
          this.render(); 
      } 

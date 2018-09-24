@@ -15,16 +15,58 @@ var EmActosVoluntariosListView = Backbone.View.extend({
          //    this.$el.find('[data-role="listview"]').append(str); 
          //} 
          //this.$el.find('[data-role="listview"]').listview(); 
+         var title = window.localStorage.getItem('selectedEmId') +" > "+ window.localStorage.getItem('selectedActoDesc');
+         this.$el.find('#lblIdEm').text(title);
          this.$el.find('[data-role="listview"]').empty(); 
          for(var i = 0; i < this.collection.size(); i++){ 
            var m= this.collection.at(i); 
-           var str = '<li><a class="lvitem" id="'+m.get('idEm')+'" href="#">'+undefined+'</a></li>'; 
+           var per = this.GetPersonaById(m.get('idPersona'));
+           var tip = this.GetTipoRelacionById(m.get('idTipoRelacion'));
+           var str = '<li><a class="lvitem ui-btn" id="'+m.get('idEm')+'" href="#">undefined</a></li>'; 
+           if(per != undefined && tip != undefined){
+            str = '<li><a class="lvitem ui-btn" id="'+m.get('idEm')+'" href="#">'+per.get('nombre')+' '+per.get('apellidos')+' - '+tip.get('descripcion')+'</a></li>'; 
+           }
+           
            this.$el.find('[data-role="listview"]').append(str); 
             
          } 
          this.$el.find('[data-role="listview"]').listview(); 
           this.renderUserInfo();
      }, 
+     SetPersonasList: function(personasList){
+    this.personasList = personasList;
+    //this.personasList.initialize();
+   },
+   GetPersonaById: function(searchId){
+     var searchIndex = 0;
+     if(this.personasList != undefined){
+        while(searchIndex < this.personasList.size()){
+          if(this.personasList.at(searchIndex).get('idPersona')==searchId)
+          {
+            return this.personasList.at(searchIndex);
+          }
+          searchIndex++;
+        }
+     }
+     return undefined;
+   },
+   SetTipoRelacionesList: function(tipoRelacionesList){
+    this.tipoRelacionesList = tipoRelacionesList;
+    this.render();
+   },
+   GetTipoRelacionById: function(searchId){
+     var searchIndex = 0;
+     if(this.tipoRelacionesList != undefined){
+       while(searchIndex < this.tipoRelacionesList.size()){
+         if(this.tipoRelacionesList.at(searchIndex).get('idRelacion')==searchId)
+         {
+           return this.tipoRelacionesList.at(searchIndex);
+         }
+         searchIndex++;
+       }
+     }
+     return undefined;
+   },
      events:{ 
          'click .lvitem':'ShowEditView' ,
          'click #seleccionaPopup':'ShowPopup',
@@ -42,7 +84,7 @@ var EmActosVoluntariosListView = Backbone.View.extend({
         this.$el.find('#fae').text(text);
      },
      GoToUserLogin: function(){
-      window.location="http://localhost:8080/Usuarios.html";
+      window.location="./Usuarios.html";
      },
      SetEditView: function(editView){ 
          this.editView = editView; 

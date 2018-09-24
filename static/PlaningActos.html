@@ -13,6 +13,10 @@
   <script src="js/modelos/PlaningActosList.js"></script> 
   <script src="js/modelos/UsuariosEntity.js"></script> 
   <script src="js/modelos/UsuariosList.js"></script> 
+
+  <script src="js/modelos/SalasEntity.js"></script> 
+  <script src="js/modelos/SalasList.js"></script> 
+
   <script src="js/vistas/PlaningActosNewView.js"></script> 
   <script src="js/vistas/PlaningActosEditView.js"></script> 
   <script src="js/vistas/PlaningActosListView.js"></script> 
@@ -26,13 +30,15 @@
        <button id="btnDoLogin" class="ui-btn-left"><span id="fae"></span></button> 
      </div> 
     <div class="ui-content"> 
+      <label id='lblIdEm' style="font-weight: bold"></label>
       <ul data-role="listview" data-filter="true" data-inset="true"></ul> 
     </div> 
     <div data-role="footer" data-position="fixed"> 
       <div data-role="navbar"> 
         <ul> 
-          <li><a href="#pgHome" class="ui-btn-active ui-state-persist" data-icon="bullets">Lista</a></li> 
-          <li><a href="#pgNew" data-icon="plus">Nueva</a></li> 
+          <li><a href="./index.html" data-icon="edit" rel="external">Datos acto</a></li>
+          <li><a href="./PlanningActos.html#pgHome" class="ui-btn-active ui-state-persist" data-icon="bullets">Lista</a></li> 
+          <li><a href="./PlanningActos.html#pgNew" data-icon="plus">Nueva</a></li> 
         </ul> 
       </div> 
     </div> 
@@ -53,12 +59,26 @@
          <option value="on">On</option> 
        </select> 
        --> 
-       <label for="editinputidActo">Acto:</label> <input id="editinputidActo" type="text" > 
+       <div data-role="popup" id="editpopUpSalasList" data-position-to="window" data-transition="turn">
+          <ul id="editlvSalas" data-role="listview" data-filter="true" data-inset="true"></ul> 
+      </div>
+       <label id='lblIdEmEdit' style="font-weight: bold"></label>
        <label for="editinputevento">Evento:</label> <input id="editinputevento" type="text" > 
        <label for="editinputfecha">Fecha:</label> <input id="editinputfecha" type="date" > 
-       <label for="editinputdesde">Desde:</label> <input id="editinputdesde" type="text" > 
-       <label for="editinputhasta">Hasta:</label> <input id="editinputhasta" type="text" > 
-       <label for="editinputsala">Sala:</label> <input id="editinputsala" type="text" > 
+       <label for="editinputdesde">Desde:</label> <input id="editinputdesde" type="time" > 
+       <label for="editinputhasta">Hasta:</label> <input id="editinputhasta" type="time" > 
+       <label for="editinputsaladesc">Sala:</label> 
+       <input id="editinputsala" type="text" class="ui-hidden-accessible">  
+       <table class="tableSearch">
+         <tr>
+           <td class="tdSearch">
+              <input id="editinputsaladesc" class="ui-state-disabled" type="text">  
+           </td>
+           <td class="tdButton">
+             <input id="editinputsalabtn" type="button" data-icon="search">
+           </td>
+         </tr>
+       </table>
        <input id="btBorrar" type="button" value="Borrar"> 
        <!--input id="btCancelar" type="button" value="Cancelar"--> 
      </div> 
@@ -79,20 +99,37 @@
          <option value="on">On</option> 
        </select> 
        <input id="btBorrar" type="button" value="Borrar"--> 
-       <label for="newinputidActo">Acto:</label> <input id="newinputidActo" type="text" > 
+       <div data-role="popup" id="newpopUpSalasList" data-position-to="window" data-transition="turn">
+          <ul id="newlvSalas" data-role="listview" data-filter="true" data-inset="true"></ul> 
+      </div>
+
+       <label id='lblIdEmNew' style="font-weight: bold"></label>
        <label for="newinputevento">Evento:</label> <input id="newinputevento" type="text" > 
        <label for="newinputfecha">Fecha:</label> <input id="newinputfecha" type="date" > 
-       <label for="newinputdesde">Desde:</label> <input id="newinputdesde" type="text" > 
-       <label for="newinputhasta">Hasta:</label> <input id="newinputhasta" type="text" > 
-       <label for="newinputsala">Sala:</label> <input id="newinputsala" type="text" > 
+       <label for="newinputdesde">Desde:</label> <input id="newinputdesde" type="time" > 
+       <label for="newinputhasta">Hasta:</label> <input id="newinputhasta" type="time" > 
+       
+       <label for="newinputsaladesc">Sala:</label> 
+       <input id="newinputsala" type="text" class="ui-hidden-accessible"> 
+       <table class="tableSearch">
+         <tr>
+           <td class="tdSearch">
+              <input id="newinputsaladesc" class="ui-state-disabled" type="text">  
+           </td>
+           <td class="tdButton">
+             <input id="newinputsalabtn" type="button" data-icon="search">
+           </td>
+         </tr>
+       </table>
        <input id="btGuardar" type="button" value="Guardar"> 
        <input id="btCancelar" type="button" value="Cancelar"> 
      </div> 
      <div data-role="footer" data-position="fixed"> 
       <div data-role="navbar"> 
         <ul> 
-          <li><a href="#pgHome" data-icon="bullets">Lista</a></li> 
-          <li><a href="#pgNew" class="ui-btn-active ui-state-persist" data-icon="plus">Nueva</a></li> 
+          <li><a href="./index.html" data-icon="edit" rel="external">Datos acto</a></li>
+          <li><a href="./PlanningActos.html#pgHome" data-icon="bullets">Lista</a></li> 
+          <li><a href="./PlanningActos.html#pgNew" class="ui-btn-active ui-state-persist" data-icon="plus">Nueva</a></li> 
         </ul> 
       </div> 
     </div> 

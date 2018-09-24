@@ -15,10 +15,12 @@ var PlaningActosListView = Backbone.View.extend({
          //    this.$el.find('[data-role="listview"]').append(str); 
          //} 
          //this.$el.find('[data-role="listview"]').listview(); 
+         var title = window.localStorage.getItem('selectedEmId') +" > "+ window.localStorage.getItem('selectedActoDesc');
+         this.$el.find('#lblIdEm').text(title);
          this.$el.find('[data-role="listview"]').empty(); 
          for(var i = 0; i < this.collection.size(); i++){ 
            var m= this.collection.at(i); 
-           var str = '<li><a class="lvitem" id="'+m.get('idPlaning')+'" href="#">'+undefined+'</a></li>'; 
+           var str = '<li><a class="lvitem ui-btn" id="'+m.get('idPlaning')+'" href="#">'+m.get('fecha')+' '+m.get('desde')+'-'+m.get('hasta')+' '+m.get('evento')+'</a></li>'; 
            this.$el.find('[data-role="listview"]').append(str); 
             
          } 
@@ -42,7 +44,7 @@ var PlaningActosListView = Backbone.View.extend({
         this.$el.find('#fae').text(text);
      },
      GoToUserLogin: function(){
-      window.location="http://localhost:8080/Usuarios.html";
+      window.location="./Usuarios.html";
      },
      SetEditView: function(editView){ 
          this.editView = editView; 

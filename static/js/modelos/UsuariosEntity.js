@@ -2,7 +2,7 @@
  * Clase que contiene los datos de usuarios
  */ 
 var UsuariosEntity = Backbone.Model.extend({ 
-  urlRoot: 'http://localhost:8080/emsec/appusers', 
+  urlRoot: '/emsec/appusers', 
   idAttribute: 'email',
 
   initialize: function () { 

@@ -2,7 +2,7 @@
  * Clase que contiene los datos de planing_actos 
  */ 
 var PlaningActosEntity = Backbone.Model.extend({ 
-  urlRoot: 'http://localhost:8080/emsec/planing_actos', 
+  urlRoot: '/emsec/planing_actos', 
   idAttribute:'idPlaning', 
   initialize: function () { 
     if (!this.has('idPlaning')) this.set('idPlaning', 0); 

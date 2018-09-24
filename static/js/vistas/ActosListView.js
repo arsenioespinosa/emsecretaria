@@ -1,5 +1,6 @@
 var ActosListView = Backbone.View.extend({ 
    initialize: function(){ 
+
        var self = this; 
        if(window.localStorage.getItem('selectedEmId') == null){
           this.selectedEmId=0;
@@ -12,6 +13,7 @@ var ActosListView = Backbone.View.extend({
        this.render(); 
      }, 
      render: function(){ 
+        
          //limpiar 
          //this.$el.html('<ul data-role="listview" data-filter="true"></ul>'); 
          //pintar rutas 
@@ -24,6 +26,7 @@ var ActosListView = Backbone.View.extend({
          this.renderEmList();
          this.renderActosList();
          this.renderUserInfo();
+         this.CheckActo();
      }, 
      renderActosList: function(){
         this.$el.find('#lvActos').empty(); 
@@ -31,7 +34,7 @@ var ActosListView = Backbone.View.extend({
           for(var i = 0; i < this.collection.size(); i++){ 
             var m= this.collection.at(i); 
             if(m.get('idEm') == this.selectedEmId){
-              var str = '<li><a class="lvitem" id="'+m.get('idActo')+'" href="#">'+m.get('dia')+' '+m.get('inicio')+' '+m.get('descripcion')+'</a></li>'; 
+              var str = '<li><a class="lvitem ui-btn" id="'+m.get('idActo')+'" href="#">'+m.get('dia')+' '+m.get('inicio')+' '+m.get('descripcion')+'</a></li>'; 
               this.$el.find('#lvActos').append(str); 
             }
           } 
@@ -79,15 +82,36 @@ var ActosListView = Backbone.View.extend({
         this.$el.find('#fae').text(text);
      },
      GoToUserLogin: function(){
-      window.location="http://localhost:8080/Usuarios.html";
+      window.location="./Usuarios.html";
+     },
+     CheckActo: function(){
+            var savedIdActo = window.localStorage.getItem('selectedActoId');
+            
+            if(savedIdActo != undefined){
+                var acto = undefined;
+              for(var i = 0; i < this.collection.size(); i++){
+                  if(this.collection.at(i).get('idActo') == savedIdActo){
+                    acto = this.collection.at(i);
+                    i = this.collection.size();
+                  }
+              }
+              if(acto != undefined){
+                this.editView.model = acto;
+                $(':mobile-pagecontainer').pagecontainer('change', '#pgEdit'); 
+                this.editView.initialize(); 
+                this.editView.render(); 
+              }
+            }
      },
      ShowEditView: function(e){ 
          ////recuperar id 
          var id = $(e.target).attr('id'); 
+         var text = $(e.target).text();
          console.log('ShowEditView ('+id+')'); 
          //Get model
          var editmodel = this.collection.get(id);
          window.localStorage.setItem('selectedActoId', id);
+         window.localStorage.setItem('selectedActoDesc', text);
          window.localStorage.setItem('selectedActoJSON', JSON.stringify(editmodel.toJSON()));
          this.editView.model = editmodel; 
          $(':mobile-pagecontainer').pagecontainer('change', '#pgEdit'); 
@@ -101,9 +125,11 @@ var ActosListView = Backbone.View.extend({
      UpdateEm: function(){
          window.localStorage.setItem('selectedEmId', this.selectedEmId);
         if(this.selectedEmId != 0){
-            this.$el.find('#lblEm').text('EM: '+this.selectedEmId);
+            //this.$el.find('#lblEm').text('EM: '+this.selectedEmId);
+            this.$el.find('#seleccionaPopup').text('EM: '+this.selectedEmId+' (Cambiar)');
         }else{
-            this.$el.find('#lblEm').text('EM: seleccionar valor');
+            //this.$el.find('#lblEm').text('EM: seleccionar valor');
+            this.$el.find('#seleccionaPopup').text('EM: seleccionar valor');
         }
      },
      ChangeCurrentEm: function(e){
@@ -113,6 +139,7 @@ var ActosListView = Backbone.View.extend({
         window.localStorage.setItem('selectedEmId', this.selectedEmId);
         this.UpdateEm();
         this.renderActosList();
+        this.CheckActo();
      }
  }); 
  

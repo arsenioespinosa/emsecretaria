@@ -2,7 +2,7 @@
  * Clase que contiene los datos de actos 
  */ 
 var ActosEntity = Backbone.Model.extend({ 
-  urlRoot: 'http://localhost:8080/emsec/actos', 
+  urlRoot: '/emsec/actos', 
   idAttribute:'idActo', 
   initialize: function () { 
     if (!this.has('idActo')) this.set('idActo', 0); 

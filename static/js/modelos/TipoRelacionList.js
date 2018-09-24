@@ -2,7 +2,7 @@
  * Define una colección de tipo_relacion 
  */ 
 var TipoRelacionList = Backbone.Collection.extend({ 
-  url: 'http://localhost:8080/emsec/tipo_relacion', 
+  url: '/emsec/tipo_relacion', 
   model: TipoRelacionEntity, 
   initialize: function () { 
     this.on('add', function (model, col, opt) { 

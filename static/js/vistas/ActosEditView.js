@@ -154,6 +154,7 @@ var ActosEditView = Backbone.View.extend({
      //'change #editinputidActo': function(){ 
      //  this.model.set('idActo', this.$('#editinputidActo').val()); 
      //}, 
+
      'change #editinputlastModificationUser': function(){ 
        this.model.set('lastModificationUser', this.$('#editinputlastModificationUser').val()); 
      }, 
@@ -370,7 +371,11 @@ var ActosEditView = Backbone.View.extend({
   },
      'load': function(){ 
          this.render(); 
-     } 
+     },
+     'click #btnAtras': function(e){
+        window.localStorage.setItem('selectedActoId', undefined);
+        $(':mobile-pagecontainer').pagecontainer('change','#pgHome');
+     }
    } 
  }); 
  

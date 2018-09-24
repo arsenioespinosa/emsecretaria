@@ -2,7 +2,7 @@
  * Clase que contiene los datos de profesiones 
  */ 
 var ProfesionesEntity = Backbone.Model.extend({ 
-  urlRoot: 'http://localhost:8080/emsec/profesiones', 
+  urlRoot: '/emsec/profesiones', 
   idAttribute:'idProfesion', 
   initialize: function () { 
     if (!this.has('idProfesion')) this.set('idProfesion', 0); 

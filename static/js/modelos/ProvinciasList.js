@@ -2,7 +2,7 @@
  * Define una colección de provincias 
  */ 
 var ProvinciasList = Backbone.Collection.extend({ 
-  url: 'http://localhost:8080/emsec/provincias', 
+  url: '/emsec/provincias', 
   model: ProvinciasEntity, 
   initialize: function () { 
     this.on('add', function (model, col, opt) { 

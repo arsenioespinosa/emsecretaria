@@ -18,7 +18,7 @@ var TipoRelacionListView = Backbone.View.extend({
          this.$el.find('[data-role="listview"]').empty(); 
          for(var i = 0; i < this.collection.size(); i++){ 
            var m= this.collection.at(i); 
-           var str = '<li><a class="lvitem" id="'+m.get('idRelacion')+'" href="#">'+m.get('descripcion')+'</a></li>'; 
+           var str = '<li><a class="lvitem ui-btn" id="'+m.get('idRelacion')+'" href="#">'+m.get('descripcion')+'</a></li>'; 
            this.$el.find('[data-role="listview"]').append(str); 
             
          } 
@@ -42,7 +42,7 @@ var TipoRelacionListView = Backbone.View.extend({
         this.$el.find('#fae').text(text);
      },
      GoToUserLogin: function(){
-      window.location="http://localhost:8080/Usuarios.html";
+      window.location="./Usuarios.html";
      },
      SetEditView: function(editView){ 
          this.editView = editView; 

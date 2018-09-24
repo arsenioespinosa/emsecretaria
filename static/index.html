@@ -34,9 +34,9 @@
      </div> 
     <div data-role="content"> 
         <div class="ui-field-contain">
-            <label id="lblEm" for="#seleccionaPopup" >EM: no seleccionado</label>
+          <!--<label id="lblEm" for="#seleccionaPopup">EM: no seleccionado</label>-->
+            
           <button id="seleccionaPopup">Seleccionar EM</button>
-          
           <div data-role="popup" id="popUpEmList" data-position-to="window" data-transition="turn">
               <ul id="lvEm" data-role="listview" data-filter="true" data-inset="true"></ul> 
           </div>
@@ -47,15 +47,16 @@
     <div data-role="footer" data-position="fixed"> 
       <div data-role="navbar"> 
         <ul> 
-          <li><a href="http://localhost:8080/index.html#pgHome" class="ui-btn-active ui-state-persist" data-icon="bullets">Actos</a></li> 
-          <li><a href="http://localhost:8080/index.html#pgNew" data-icon="plus">Nuevo</a></li> 
-          <li><a href="http://localhost:8080/index.html#pgTables" data-icon="gear">Tablas</a></li> 
+          <li><a href="./index.html#pgHome" class="ui-btn-active ui-state-persist" data-icon="bullets">Actos</a></li> 
+          <li><a href="./index.html#pgNew" data-icon="plus">Nuevo</a></li> 
+          <li><a href="./index.html#pgTables" data-icon="gear">Tablas</a></li> 
         </ul> 
       </div> 
     </div> 
   </div> 
   <div id="pgEdit" data-role="page"> 
-    <div data-role="header" data-add-back-btn="true" data-back-btn-text="Atr&aacute;s" > 
+    <div data-role="header" data-add-back-btn="false" data-back-btn-text="Atr&aacute;s" > 
+      <button class="ui-bnt-left" data-icon="bullets" id="btnAtras">Lista actos</button>
        <H1>Editar acto</H1> 
       <img class="ui-btn-right headerLogo" src="./img/logoEm2017.png" /> 
      </div> 
@@ -213,10 +214,10 @@
      <div data-role="footer" data-position="fixed"> 
         <div data-role="navbar"> 
           <ul> 
-            <li><a href="http://localhost:8080/index.html#pgEdit" class="ui-btn-active ui-state-persist" data-icon="edit" rel="external">Datos</a></li>
-            <li><a href="http://localhost:8080/TimingActos.html#pgHome" data-icon="bullets" rel="external">Secuencia</a></li> 
-            <li><a href="http://localhost:8080/PlaningActos.html#pgNew" data-icon="plus" rel="external">Agenda</a></li> 
-            <li><a href="http://localhost:8080/EmActosVoluntarios.html#pgTables" data-icon="gear" rel="external">Participantes</a></li> 
+            <li><a href="./index.html#pgEdit" class="ui-btn-active ui-state-persist" data-icon="edit" rel="external">Datos</a></li>
+            <li><a href="./TimingActos.html#pgHome" data-icon="bullets" rel="external">Secuencia</a></li> 
+            <li><a href="./PlaningActos.html#pgHome" data-icon="plus" rel="external">Agenda</a></li> 
+            <li><a href="./EmActosVoluntarios.html#pgHome" data-icon="gear" rel="external">Participantes</a></li> 
           </ul> 
         </div> 
      </div> 
@@ -371,16 +372,16 @@
      <div data-role="footer" data-position="fixed"> 
       <div data-role="navbar"> 
         <ul> 
-          <li><a href="http://localhost:8080/index.html#pgHome" data-icon="bullets">Actos</a></li> 
-          <li><a href="http://localhost:8080/index.html#pgNew" class="ui-btn-active ui-state-persist" data-icon="plus">Nuevo</a></li> 
-          <li><a href="http://localhost:8080/index.html#pgTables" data-icon="gear">Tablas</a></li> 
+          <li><a href="./index.html#pgHome" data-icon="bullets">Actos</a></li> 
+          <li><a href="./index.html#pgNew" class="ui-btn-active ui-state-persist" data-icon="plus">Nuevo</a></li> 
+          <li><a href="./index.html#pgTables" data-icon="gear">Tablas</a></li> 
         </ul> 
       </div> 
     </div> 
   </div> 
   <div id="pgTables" data-role="page"> 
       <div data-role="header"> 
-        <H1>Nuevo acto</H1> 
+        <H1>Catálogo</H1> 
         <img class="ui-btn-right headerLogo" src="./img/logoEm2017.png" /> 
        </div> 
       <div class="ui-content"> 
@@ -388,18 +389,18 @@
             <!--
               <li><a class="lvTablasItem" id="lvTablasPersonas" href="#">Personas</a></li>
             -->
-            <li><a href="http://localhost:8080/DatosEm.html#pgHome" rel="external">Datos EM</a></li>
-            <li><a href="http://localhost:8080/Personas.html#pgHome" rel="external">Personas</a></li>
-            <li><a href="http://localhost:8080/Profesiones.html#pgHome" rel="external">Profesiones</a></li>
-            <li><a href="http://localhost:8080/Salas.html#pgHome" rel="external">Salas</a></li>
-            <li><a href="http://localhost:8080/TipoRelacion.html#pgHome" rel="external">Tipos de relación</a></li>
+            <li><a href="./DatosEm.html#pgHome" rel="external">Datos EM</a></li>
+            <li><a href="./Personas.html#pgHome" rel="external">Personas</a></li>
+            <li><a href="./Profesiones.html#pgHome" rel="external">Profesiones</a></li>
+            <li><a href="./Salas.html#pgHome" rel="external">Salas</a></li>
+            <li><a href="./TipoRelacion.html#pgHome" rel="external">Tipos de relación</a></li>
           </ul> 
           <div data-role="footer" data-position="fixed"> 
               <div data-role="navbar"> 
                 <ul> 
-                  <li><a href="http://localhost:8080/index.html#pgHome" data-icon="bullets">Actos</a></li> 
-                  <li><a href="http://localhost:8080/index.html#pgNew" class="ui-btn-active ui-state-persist" data-icon="plus">Nuevo</a></li> 
-                  <li><a href="http://localhost:8080/index.html#pgTables" data-icon="gear">Tablas</a></li> 
+                  <li><a href="./index.html#pgHome" data-icon="bullets">Actos</a></li> 
+                  <li><a href="./index.html#pgNew" data-icon="plus">Nuevo</a></li> 
+                  <li><a href="./index.html#pgTables" class="ui-btn-active ui-state-persist" data-icon="gear">Tablas</a></li> 
                 </ul> 
               </div> 
           </div> 

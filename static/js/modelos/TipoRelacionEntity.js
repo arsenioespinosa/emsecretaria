@@ -2,7 +2,7 @@
  * Clase que contiene los datos de tipo_relacion 
  */ 
 var TipoRelacionEntity = Backbone.Model.extend({ 
-  urlRoot: 'http://localhost:8080/emsec/tipo_relacion', 
+  urlRoot: '/emsec/tipo_relacion', 
   idAttribute:'idRelacion', 
   initialize: function () { 
     if (!this.has('idRelacion')) this.set('idRelacion', 0); 

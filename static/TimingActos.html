@@ -28,15 +28,16 @@
        <button id="btnDoLogin" class="ui-btn-left"><span id="fae"></span></button> 
      </div> 
     <div class="ui-content"> 
+      <label id='lblIdEm' style="font-weight: bold"></label>
       <label>Secuencia del acto:</label>
       <ul data-role="listview" data-filter="true" data-inset="true"></ul> 
     </div> 
     <div data-role="footer" data-position="fixed"> 
       <div data-role="navbar"> 
         <ul> 
-          <li><a href="http://localhost:8080/index.html#pgEdit" data-icon="edit" rel="external">Datos acto</a></li>
-          <li><a href="http://localhost:8080/TimingActos.html#pgHome" class="ui-btn-active ui-state-persist" data-icon="bullets">Secuencia</a></li> 
-          <li><a href="http://localhost:8080/TimingActos.html#pgNew" data-icon="plus">Nueva</a></li> 
+          <li><a href="./index.html" data-icon="edit" rel="external">Datos acto</a></li>
+          <li><a href="./TimingActos.html#pgHome" class="ui-btn-active ui-state-persist" data-icon="bullets">Secuencia</a></li> 
+          <li><a href="./TimingActos.html#pgNew" data-icon="plus">Nueva</a></li> 
         </ul> 
       </div> 
     </div> 
@@ -57,6 +58,7 @@
          <option value="on">On</option> 
        </select> 
        --> 
+       <label id='lblIdEmEdit' style="font-weight: bold"></label>
        <label for="editinputidActo">Editar timing:</label> <input id="editinputidActo" type="text" class="ui-hidden-accessible"> 
        <label for="editinputevento">Evento:</label> <input id="editinputevento" type="text" > 
        <label for="editinputdesde">Desde:</label> <input id="editinputdesde" type="time" > 
@@ -81,6 +83,7 @@
          <option value="on">On</option> 
        </select> 
        <input id="btBorrar" type="button" value="Borrar"--> 
+       <label id='lblIdEmNew' style="font-weight: bold"></label>
        <label for="newinputidActo">Nueva secuencia:</label> <input id="newinputidActo" type="text" class="ui-hidden-accessible"> 
        <label for="newinputevento">Evento:</label> <input id="newinputevento" type="text" > 
        <label for="newinputdesde">Desde:</label> <input id="newinputdesde" type="time" > 
@@ -91,9 +94,9 @@
      <div data-role="footer" data-position="fixed"> 
       <div data-role="navbar"> 
         <ul> 
-          <li><a href="http://localhost:8080/index.html#pgEdit" data-icon="edit" rel="external">Datos acto</a></li>
-          <li><a href="http://localhost:8080/TimingActos.html#pgHome" data-icon="bullets">Secuencia</a></li> 
-          <li><a href="http://localhost:8080/TimingActos.html#pgNew" class="ui-btn-active ui-state-persist" data-icon="plus">Nueva</a></li> 
+          <li><a href="./index.html" data-icon="edit" rel="external">Datos acto</a></li>
+          <li><a href="./TimingActos.html#pgHome" data-icon="bullets">Secuencia</a></li> 
+          <li><a href="./TimingActos.html#pgNew" class="ui-btn-active ui-state-persist" data-icon="plus">Nueva</a></li> 
         </ul> 
       </div> 
     </div> 

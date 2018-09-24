@@ -2,7 +2,7 @@
  * Clase que contiene los datos de salas 
  */ 
 var SalasEntity = Backbone.Model.extend({ 
-  urlRoot: 'http://localhost:8080/emsec/salas', 
+  urlRoot: '/emsec/salas', 
   idAttribute:'idSala', 
   initialize: function () { 
     if (!this.has('idSala')) this.set('idSala', 0); 

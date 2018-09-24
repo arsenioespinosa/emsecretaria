@@ -41,7 +41,6 @@ var LoginView = Backbone.View.extend({
      setToken: function(){
         if(this.collection.length > 0){
             //console.log("session token: "+this.collection[0].sessionToken);
-            //window.location.href = 'http://localhost:8080/';
         }
      },
      events: {
@@ -73,7 +72,7 @@ var LoginView = Backbone.View.extend({
             this.render();
          },
          'click #goHome': function(){
-            window.location.href = 'http://localhost:8080/'
+            window.location.href = './index.html'
          }
      }, 
      SetEditView: function(editView){ 

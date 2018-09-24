@@ -2,7 +2,7 @@
  * Clase que contiene los datos de em_actos_personas 
  */ 
 var EmActosPersonasEntity = Backbone.Model.extend({ 
-  urlRoot: 'http://localhost:8080/emsec/em_actos_personas', 
+  urlRoot: '/emsec/em_actos_personas', 
   idAttribute:'idEm', 
   initialize: function () { 
     if (!this.has('idEm')) this.set('idEm', 0); 

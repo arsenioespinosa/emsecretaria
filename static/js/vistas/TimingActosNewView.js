@@ -10,8 +10,8 @@ var TimingActosNewView = Backbone.View.extend({
        // this.render(); 
    }, 
    render: function(){ 
-   var descActo = this.actosEnt.get('descripcion');
-     this.$el.find('#tituloNew').text(descActo);
+   var title = window.localStorage.getItem('selectedEmId') +" > "+ window.localStorage.getItem('selectedActoDesc');
+     this.$el.find('#lblIdEmNew').text(title);
      //this.$('#txtEditarTitulo').val(this.model.get('titulo')).textinput('refresh'); 
     this.$('#newinputidTiming').val(this.model.get('idTiming')).textinput('refresh'); 
     this.$('#newinputlastModificationUser').val(this.model.get('lastModificationUser')).textinput('refresh'); 

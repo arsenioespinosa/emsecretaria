@@ -2,7 +2,7 @@
  * Define una colección de traslados 
  */ 
 var TrasladosList = Backbone.Collection.extend({ 
-  url: 'http://localhost:8080/emsec/traslados', 
+  url: '/emsec/traslados', 
   model: TrasladosEntity, 
   initialize: function () { 
     this.on('add', function (model, col, opt) { 

@@ -13,6 +13,10 @@
   <script src="js/modelos/EmActosVoluntariosList.js"></script> 
   <script src="js/modelos/UsuariosEntity.js"></script> 
   <script src="js/modelos/UsuariosList.js"></script> 
+  <script src="js/modelos/PersonasEntity.js"></script> 
+  <script src="js/modelos/PersonasList.js"></script> 
+  <script src="js/modelos/TipoRelacionEntity.js"></script> 
+  <script src="js/modelos/TipoRelacionList.js"></script> 
   <script src="js/vistas/EmActosVoluntariosNewView.js"></script> 
   <script src="js/vistas/EmActosVoluntariosEditView.js"></script> 
   <script src="js/vistas/EmActosVoluntariosListView.js"></script> 
@@ -26,13 +30,15 @@
        <button id="btnDoLogin" class="ui-btn-left"><span id="fae"></span></button> 
      </div> 
     <div class="ui-content"> 
+      <label id='lblIdEm' style="font-weight: bold"></label>
       <ul data-role="listview" data-filter="true" data-inset="true"></ul> 
     </div> 
     <div data-role="footer" data-position="fixed"> 
       <div data-role="navbar"> 
         <ul> 
-          <li><a href="#pgHome" class="ui-btn-active ui-state-persist" data-icon="bullets">Lista</a></li> 
-          <li><a href="#pgNew" data-icon="plus">Nuevo</a></li> 
+          <li><a href="./index.html" data-icon="edit" rel="external">Datos acto</a></li>
+          <li><a href="./EmActosVoluntarios.html#pgHome" class="ui-btn-active ui-state-persist" data-icon="bullets">Lista</a></li> 
+          <li><a href="./EmActosVoluntarios.html#pgNew" data-icon="plus">Nuevo</a></li> 
         </ul> 
       </div> 
     </div> 
@@ -53,9 +59,39 @@
          <option value="on">On</option> 
        </select> 
        --> 
-       <label for="editinputidActo">Acto:</label> <input id="editinputidActo" type="text" > 
-       <label for="editinputidPersona">Voluntario:</label> <input id="editinputidPersona" type="text" > 
-       <label for="editinputidTipoRelacion">Tipo relación:</label> <input id="editinputidTipoRelacion" type="text" > 
+       <div data-role="popup" id="editpopUpPersonasList" data-position-to="window" data-transition="turn">
+          <ul id="editlvPersonas" data-role="listview" data-filter="true" data-inset="true"></ul> 
+      </div>
+      <div data-role="popup" id="editpopUpTipoRelacionesList" data-position-to="window" data-transition="turn">
+          <ul id="editlvTipoRelaciones" data-role="listview" data-filter="true" data-inset="true"></ul> 
+      </div>
+
+       <label id='lblIdEmEdit' style="font-weight: bold"></label>
+       <label for="editinputpersonadesc">Voluntario:</label> 
+       <input id="editinputpersona" type="text" class="ui-hidden-accessible">  
+       <table class="tableSearch">
+         <tr>
+           <td class="tdSearch">
+              <input id="editinputpersonadesc" class="ui-state-disabled" type="text">  
+           </td>
+           <td class="tdButton">
+             <input id="editinputpersonabtn" type="button" data-icon="search">
+           </td>
+         </tr>
+       </table>
+
+       <label for="editinputtiporelaciondesc">Tipo relación:</label> 
+       <input id="editinputtiporelacion" type="text" class="ui-hidden-accessible">  
+       <table class="tableSearch">
+         <tr>
+           <td class="tdSearch">
+              <input id="editinputtiporelaciondesc" class="ui-state-disabled" type="text">  
+           </td>
+           <td class="tdButton">
+             <input id="editinputtiporelacionbtn" type="button" data-icon="search">
+           </td>
+         </tr>
+       </table>
        <label for="editinputobservaciones">Observaciones:</label> <input id="editinputobservaciones" type="text" > 
        <input id="btBorrar" type="button" value="Borrar"> 
        <!--input id="btCancelar" type="button" value="Cancelar"--> 
@@ -77,9 +113,38 @@
          <option value="on">On</option> 
        </select> 
        <input id="btBorrar" type="button" value="Borrar"--> 
-       <label for="newinputidActo">Acto:</label> <input id="newinputidActo" type="text" > 
-       <label for="newinputidPersona">Voluntario:</label> <input id="newinputidPersona" type="text" > 
-       <label for="newinputidTipoRelacion">Tipo relación:</label> <input id="newinputidTipoRelacion" type="text" > 
+      <div data-role="popup" id="newpopUpPersonasList" data-position-to="window" data-transition="turn">
+          <ul id="newlvPersonas" data-role="listview" data-filter="true" data-inset="true"></ul> 
+      </div>
+      <div data-role="popup" id="newpopUpTipoRelacionesList" data-position-to="window" data-transition="turn">
+          <ul id="newlvTipoRelaciones" data-role="listview" data-filter="true" data-inset="true"></ul> 
+      </div>
+       <label id='lblIdEmNew' style="font-weight: bold"></label>
+       <label for="newinputpersonadesc">Voluntario:</label> 
+       <input id="newinputpersona" type="text" class="ui-hidden-accessible"> 
+       <table class="tableSearch">
+         <tr>
+           <td class="tdSearch">
+              <input id="newinputpersonadesc" class="ui-state-disabled" type="text">  
+           </td>
+           <td class="tdButton">
+             <input id="newinputpersonabtn" type="button" data-icon="search">
+           </td>
+         </tr>
+       </table>
+
+      <label for="newinputtiporelaciondesc">Tipo Relación:</label> 
+       <input id="newinputtiporelacion" type="text" class="ui-hidden-accessible"> 
+       <table class="tableSearch">
+         <tr>
+           <td class="tdSearch">
+              <input id="newinputtiporelaciondesc" class="ui-state-disabled" type="text">  
+           </td>
+           <td class="tdButton">
+             <input id="newinputtiporelacionbtn" type="button" data-icon="search">
+           </td>
+         </tr>
+       </table>
        <label for="newinputobservaciones">Observaciones:</label> <input id="newinputobservaciones" type="text" > 
        <input id="btGuardar" type="button" value="Guardar"> 
        <input id="btCancelar" type="button" value="Cancelar"> 
@@ -87,8 +152,9 @@
      <div data-role="footer" data-position="fixed"> 
       <div data-role="navbar"> 
         <ul> 
-          <li><a href="#pgHome" data-icon="bullets">Lista</a></li> 
-          <li><a href="#pgNew" class="ui-btn-active ui-state-persist" data-icon="plus">Nuevo</a></li> 
+          <li><a href="./index.html" data-icon="edit" rel="external">Datos acto</a></li>
+          <li><a href="./EmActosVoluntarios.html#pgHome" data-icon="bullets">Lista</a></li> 
+          <li><a href="./EmActosVoluntarios.html#pgNew" class="ui-btn-active ui-state-persist" data-icon="plus">Nuevo</a></li> 
         </ul> 
       </div> 
     </div> 

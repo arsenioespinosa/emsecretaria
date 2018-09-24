@@ -2,7 +2,7 @@
  * Define una colección de profesiones 
  */ 
 var ProfesionesList = Backbone.Collection.extend({ 
-  url: 'http://localhost:8080/emsec/profesiones', 
+  url: '/emsec/profesiones', 
   model: ProfesionesEntity, 
   initialize: function () { 
     this.on('add', function (model, col, opt) { 

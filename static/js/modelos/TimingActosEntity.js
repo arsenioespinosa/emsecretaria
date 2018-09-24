@@ -2,7 +2,7 @@
  * Clase que contiene los datos de timing_actos 
  */ 
 var TimingActosEntity = Backbone.Model.extend({ 
-  urlRoot: 'http://localhost:8080/emsec/timingactos', 
+  urlRoot: '/emsec/timingactos', 
   idAttribute:'idTiming', 
   initialize: function () { 
     if (!this.has('idTiming')) this.set('idTiming', 0); 

@@ -1,0 +1,43 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <meta charset="UTF-8"> 
+  <title>Backups</title> 
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css" /> 
+  <link rel="stylesheet" href="css/style.css" /> 
+  <script src="js/externo/jquery-1.11.1.min.js"></script> 
+  <script src="js/externo/jquery.mobile-1.4.5.js"></script> 
+  <script src="js/externo/underscore.js"></script> 
+  <script src="js/externo/backbone.js"></script> 
+  <script src="js/modelos/BackupEntity.js"></script> 
+  <script src="js/modelos/BackupList.js"></script> 
+  <script src="js/modelos/UsuariosEntity.js"></script> 
+  <script src="js/modelos/UsuariosList.js"></script> 
+  <script src="js/vistas/BackupsListView.js"></script> 
+  <script src="js/BackupsApp.js"></script> 
+</head> 
+<body> 
+  <div id="pgHome" data-role="page"> 
+    <div data-role="header"> 
+       <H1>Lista Backups</H1> 
+       <img class="ui-btn-right headerLogo" src="./img/logoEm2017.png" /> 
+       <button id="btnDoLogin" class="ui-btn-left"><span id="fae"></span></button> 
+     </div> 
+    <div class="ui-content"> 
+       <input id="btnNuevo" type="button" value="Nuevo"> 
+      <ul data-role="listview" data-filter="true" data-inset="true"
+      ></ul> 
+    </div> 
+    <div data-role="footer" data-position="fixed"> 
+      <div data-role="navbar"> 
+        <ul> 
+          <li><a href="#pgHome" class="ui-btn-active ui-state-persist" data-icon="bullets">Lista</a></li> 
+          <li><a href="./index.html#pgHome" rel="external" data-icon="star">EM</a></li> 
+        </ul> 
+      </div> 
+    </div> 
+  </div> 
+  <div id="pgEdit" data-role="page">
+  </div>
+</body> 
+</html> 

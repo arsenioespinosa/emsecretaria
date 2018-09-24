@@ -2,7 +2,7 @@
  * Define una colección de usuarios 
  */ 
 var UsuariosList = Backbone.Collection.extend({ 
-  url: 'http://localhost:8080/emsec/appusers', 
+  url: '/emsec/appusers', 
   model: UsuariosEntity, 
   initialize: function () { 
     this.on('add', function (model, col, opt) { 

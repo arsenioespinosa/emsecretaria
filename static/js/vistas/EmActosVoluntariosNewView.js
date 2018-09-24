@@ -8,6 +8,8 @@ var EmActosVoluntariosNewView = Backbone.View.extend({
    }, 
    render: function(){ 
      //this.$('#txtEditarTitulo').val(this.model.get('titulo')).textinput('refresh'); 
+     var title = window.localStorage.getItem('selectedEmId') +" > "+ window.localStorage.getItem('selectedActoDesc');
+         this.$el.find('#lblIdEmNew').text(title);
     this.$('#newinputidEm').val(this.model.get('idEm')).textinput('refresh'); 
     this.$('#newinputlastModificationUser').val(this.model.get('lastModificationUser')).textinput('refresh'); 
     this.$('#newinputlastModificationDate').val(this.model.get('lastModificationDate')); 
@@ -17,7 +19,65 @@ var EmActosVoluntariosNewView = Backbone.View.extend({
     this.$('#newinputidPersona').val(this.model.get('idPersona')).textinput('refresh'); 
     this.$('#newinputidTipoRelacion').val(this.model.get('idTipoRelacion')).textinput('refresh'); 
     this.$('#newinputobservaciones').val(this.model.get('observaciones')).textinput('refresh'); 
+    this.renderPersonasList();
+    this.renderTipoRelacionesList();
    }, 
+   renderPersonasList: function(){
+    this.$el.find('#newlvPersonas').empty();
+    if(this.personasList != undefined){
+      for (var i = 0; i < this.personasList.length; i++){
+          var m = this.personasList.at(i);
+          var str = '<li><a class="newlvPersonasItem" id="'+m.get('idPersona')+'" href="#">'+m.get('apellidos')+', '+m.get('nombre')+'</a></li>';
+          this.$el.find('#newlvPersonas').append(str);
+      }
+      
+    }
+    this.$el.find('#newlvPersonas').listview();
+   },
+   SetPersonasList: function(personasList){
+    this.personasList = personasList;
+    //this.personasList.initialize();
+    this.renderPersonasList();
+   },
+   GetPersonaById: function(searchId){
+     var searchIndex = 0;
+     while(searchIndex < this.personasList.length){
+       if(this.personasList.at(searchIndex).get('idPersona')==searchId)
+       {
+         return this.personasList.at(searchIndex);
+       }
+       searchIndex++;
+     }
+     return null;
+   },
+   renderTipoRelacionesList: function(){
+    this.$el.find('#newlvTipoRelaciones').empty();
+    if(this.tipoRelacionesList != undefined){
+      for (var i = 0; i < this.tipoRelacionesList.length; i++){
+          var m = this.tipoRelacionesList.at(i);
+          var str = '<li><a class="newlvTipoRelacionesItem" id="'+m.get('idRelacion')+'" href="#">'+m.get('descripcion')+'</a></li>';
+          this.$el.find('#newlvTipoRelaciones').append(str);
+      }
+      
+    }
+    this.$el.find('#newlvTipoRelaciones').listview();
+   },
+   SetTipoRelacionesList: function(tipoRelacionesList){
+    this.tipoRelacionesList = tipoRelacionesList;
+    //this.personasList.initialize();
+    this.renderTipoRelacionesList();
+   },
+   GetTipoRelacionById: function(searchId){
+     var searchIndex = 0;
+     while(searchIndex < this.tipoRelacionesList.length){
+       if(this.tipoRelacionesList.at(searchIndex).get('idRelacion')==searchId)
+       {
+         return this.tipoRelacionesList.at(searchIndex);
+       }
+       searchIndex++;
+     }
+     return null;
+   },
    events:{ 
      //'change #txtEditarTitulo': function(){ 
      //  this.model.set('titulo', this.$('#txtEditarTitulo').val()); 
@@ -63,6 +123,38 @@ var EmActosVoluntariosNewView = Backbone.View.extend({
        $(':mobile-pagecontainer').pagecontainer('change','#pgHome'); 
        this.render(); 
      }, 
+     'click #newinputpersonabtn': function(){
+       this.renderPersonasList();
+       $("#newpopUpPersonasList").popup("open");
+     },
+     'click .newlvPersonasItem': function(e){
+       $("#newpopUpPersonasList").popup("close");
+       var pId = $(e.target).attr('id');
+       var pEnt = this.GetPersonaById(pId);
+       
+       if(pEnt != null){
+         var pDes = pEnt.get('nombre') + ' ' + pEnt.get('apellidos');
+          this.$('#newinputpersona').val(pId).textinput('refresh'); 
+          this.model.set('idPersona', pId); 
+          this.$('#newinputpersonadesc').val(pDes).textinput('refresh'); 
+       }
+     },
+     'click #newinputtiporelacionbtn': function(){
+       this.renderTipoRelacionesList();
+       $("#newpopUpTipoRelacionesList").popup("open");
+     },
+     'click .newlvTipoRelacionesItem': function(e){
+       $("#newpopUpTipoRelacionesList").popup("close");
+       var pId = $(e.target).attr('id');
+       var pEnt = this.GetTipoRelacionById(pId);
+       
+       if(pEnt != null){
+         var pDes = pEnt.get('descripcion');
+          this.$('#newinputtiporelacion').val(pId).textinput('refresh'); 
+          this.model.set('idTipoRelacion', pId); 
+          this.$('#newinputtiporelaciondesc').val(pDes).textinput('refresh'); 
+       }
+     },
      'load': function(){ 
          this.render(); 
      } 

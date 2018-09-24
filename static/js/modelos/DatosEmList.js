@@ -2,7 +2,7 @@
  * Define una colección de datos_em 
  */ 
 var DatosEmList = Backbone.Collection.extend({ 
-  url: 'http://localhost:8080/emsec/datos_em', 
+  url: '/emsec/datos_em', 
   model: DatosEmEntity, 
   initialize: function () { 
     this.on('add', function (model, col, opt) { 

@@ -2,7 +2,7 @@
  * Define una colección de timing_actos 
  */ 
 var TimingActosList = Backbone.Collection.extend({ 
-  url: 'http://localhost:8080/emsec/timingactos', 
+  url: '/emsec/timingactos', 
   model: TimingActosEntity, 
   initialize: function () { 
     this.on('add', function (model, col, opt) { 

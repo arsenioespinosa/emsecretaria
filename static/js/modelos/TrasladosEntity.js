@@ -2,7 +2,7 @@
  * Clase que contiene los datos de traslados 
  */ 
 var TrasladosEntity = Backbone.Model.extend({ 
-  urlRoot: 'http://localhost:8080/emsec/traslados', 
+  urlRoot: '/emsec/traslados', 
   idAttribute:'idTraslado', 
   initialize: function () { 
     if (!this.has('idTraslado')) this.set('idTraslado', 0); 

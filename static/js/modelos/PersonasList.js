@@ -2,7 +2,7 @@
  * Define una colección de personas 
  */ 
 var PersonasList = Backbone.Collection.extend({ 
-  url: 'http://localhost:8080/emsec/personas', 
+  url: '/emsec/personas', 
   model: PersonasEntity, 
   initialize: function () { 
     this.on('add', function (model, col, opt) { 

@@ -42,7 +42,7 @@ var EmActosPersonasListView = Backbone.View.extend({
         this.$el.find('#fae').text(text);
      },
      GoToUserLogin: function(){
-      window.location="http://localhost:8080/Usuarios.html";
+      window.location="./Usuarios.html";
      },
      SetEditView: function(editView){ 
          this.editView = editView; 

@@ -2,7 +2,7 @@
  * Define una colección de actos 
  */ 
 var ActosList = Backbone.Collection.extend({ 
-  url: 'http://localhost:8080/emsec/actos', 
+  url: '/emsec/actos', 
   model: ActosEntity, 
   initialize: function () { 
     this.on('add', function (model, col, opt) { 

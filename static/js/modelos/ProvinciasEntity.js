@@ -2,7 +2,7 @@
  * Clase que contiene los datos de provincias 
  */ 
 var ProvinciasEntity = Backbone.Model.extend({ 
-  urlRoot: 'http://localhost:8080/emsec/provincias', 
+  urlRoot: '/emsec/provincias', 
   idAttribute:'idProvincia', 
   initialize: function () { 
     if (!this.has('codigo')) this.set('codigo', ''); 

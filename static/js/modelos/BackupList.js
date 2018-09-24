@@ -1,20 +1,20 @@
 /** 
- * Define una colección de agenda 
+ * Define una colección de backups 
  */ 
-var AgendaList = Backbone.Collection.extend({ 
-  url: '/emsec/agenda', 
-  model: AgendaEntity, 
+var BackupList = Backbone.Collection.extend({ 
+  url: '/emsec/backups', 
+  model: BackupEntity, 
   initialize: function () { 
     this.on('add', function (model, col, opt) { 
-      console.log('AgendaList:add ' + model.id); 
+      console.log('BackupsList:add ' + model.id); 
       model.save(); 
     }); 
     this.on('remove', function (model, col, opt) { 
-      console.log('AgendaList:remove ' + model.id); 
+      console.log('BackupsList:remove ' + model.id); 
       model.destroy({ silent: true }); 
     }); 
     this.on('change', function (model, opt) { 
-      console.log('AgendaList:change ' + model.id); 
+      console.log('BackupsList:change ' + model.id); 
       if (model.changedAttributes().id) return; 
       model.save(); 
     }); 

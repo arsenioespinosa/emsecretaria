@@ -2,7 +2,7 @@
  * Define una colección de planing_actos 
  */ 
 var PlaningActosList = Backbone.Collection.extend({ 
-  url: 'http://localhost:8080/emsec/planing_actos', 
+  url: '/emsec/planing_actos', 
   model: PlaningActosEntity, 
   initialize: function () { 
     this.on('add', function (model, col, opt) { 
